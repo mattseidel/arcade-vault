@@ -92,7 +92,7 @@ Convenciones:
 - [ ] Elegir el chip PUZZLE deja solo CAÍDA.
 - [ ] Una búsqueda sin coincidencias muestra "NO HAY RESULTADOS".
 - [ ] Clic en una tarjeta o en su botón JUGAR navega a `/juegos/<id>`.
-- [ ] `/juegos/no-existe` devuelve 404.
+- [ ] `/juegos/no-existe` muestra la página 404 (con `cacheComponents` el status HTTP es 200 por streaming; `noindex` incluido).
 - [ ] `/juegos/<id>` muestra portada, tags, descripción, 3 stats y 10 filas de leaderboard, con los 3 primeros resaltados.
 - [ ] "JUGAR AHORA" navega a `/juegos/<id>/jugar`; "VOLVER AL VAULT" a `/`.
 - [ ] En el reproductor la puntuación aumenta sola; PAUSA la detiene y muestra "EN PAUSA"; REANUDAR continúa.
