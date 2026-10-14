@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Press_Start_2P, JetBrains_Mono, Courier_Prime } from "next/font/google";
+import { Nav } from "@/components/nav";
 import "./globals.css";
 
 const pixel = Press_Start_2P({
@@ -34,7 +35,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <div className="av-bg" />
         <div className="av-noise" />
-        {children}
+        <Nav />
+        <main className="av-main">{children}</main>
+        <footer className="av-footer">
+          © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+        </footer>
       </body>
     </html>
   );
