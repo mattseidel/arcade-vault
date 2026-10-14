@@ -11,6 +11,9 @@ The project follows Spec Driven Design (`/spec` and `/spec-impl` workflow) using
 ## Skills
 usa siempre el /frontend-design para diseñar la interfaz de usuario
 
+## Playwright
+Guarda todos los screenshots de Playwright en `.playwright-screenshots/` (usa ese directorio en el `filename` de `browser_take_screenshot`).
+
 ## Commands
 
 - `npm run dev` — dev server (http://localhost:3000)

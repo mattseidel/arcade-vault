@@ -1,6 +1,6 @@
 # SPEC 01 — Pantallas visuales del MVP
 
-> **Status:** Aprobado
+> **Status:** Implemented
 > **Depends on:** Ninguna (los estilos base ya viven en `app/globals.css` y `app/layout.tsx`, rama `01-styles`)
 > **Date:** 2026-10-14
 > **Objective:** Implementar en Next.js las 5 pantallas de `references/templates/` (Biblioteca, Detalle, Reproductor, Login, Salón de la Fama) con navegación y datos mock, sin lógica de juego real ni persistencia.
