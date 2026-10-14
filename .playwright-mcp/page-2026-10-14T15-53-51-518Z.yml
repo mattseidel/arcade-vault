@@ -1,0 +1,128 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e2]:
+    - navigation [ref=f5e3]:
+      - link "ARCADE VAULT" [ref=f5e4] [cursor=pointer]:
+        - /url: /
+      - button "Menú" [ref=f5e7] [cursor=pointer]: ≡
+    - complementary [ref=f5e8]:
+      - generic [ref=f5e9]: MENÚ
+      - link "Inicio" [ref=f5e10] [cursor=pointer]:
+        - /url: /
+      - link "Biblioteca" [ref=f5e11] [cursor=pointer]:
+        - /url: /biblioteca
+      - link "Salón de la Fama" [ref=f5e12] [cursor=pointer]:
+        - /url: /salon
+      - link "Iniciar Sesión" [ref=f5e13] [cursor=pointer]:
+        - /url: /login
+      - generic [ref=f5e15]: CRÉDITOS · 03
+    - main [ref=f5e16]:
+      - generic [ref=f5e17]:
+        - generic [ref=f5e18]:
+          - heading "ARCADE VAULT" [level=1] [ref=f5e19]
+          - generic [ref=f5e20]: INSERTA UNA MONEDA PARA JUGAR _
+        - generic [ref=f5e21]:
+          - generic [ref=f5e22]:
+            - generic [ref=f5e23]: ⌕
+            - textbox "Buscar un juego" [ref=f5e24]:
+              - /placeholder: Buscar un juego por nombre…
+          - generic [ref=f5e25]:
+            - button "TODOS" [ref=f5e26] [cursor=pointer]
+            - button "ARCADE" [ref=f5e27] [cursor=pointer]
+            - button "PUZZLE" [ref=f5e28] [cursor=pointer]
+            - button "SHOOTER" [ref=f5e29] [cursor=pointer]
+            - button "VERSUS" [ref=f5e30] [cursor=pointer]
+        - generic [ref=f5e31]:
+          - link "ARCADE BLOQUE BUSTER Rebota la pelota y destruye muros de neón. MEJOR PUNTUACIÓN 28.450 JUGAR" [ref=f5e32] [cursor=pointer]:
+            - /url: /juegos/bloque-buster
+            - generic [ref=f5e33]: ARCADE
+            - generic [ref=f5e36]:
+              - generic [ref=f5e37]: BLOQUE BUSTER
+              - generic [ref=f5e38]: Rebota la pelota y destruye muros de neón.
+              - generic [ref=f5e39]:
+                - generic [ref=f5e40]:
+                  - generic [ref=f5e41]: MEJOR PUNTUACIÓN
+                  - generic [ref=f5e42]: "28.450"
+                - generic [ref=f5e43]: JUGAR
+          - link "PUZZLE CAÍDA Encaja las piezas antes de que el techo te aplaste. MEJOR PUNTUACIÓN 184.220 JUGAR" [ref=f5e44] [cursor=pointer]:
+            - /url: /juegos/caida
+            - generic [ref=f5e45]: PUZZLE
+            - generic [ref=f5e48]:
+              - generic [ref=f5e49]: CAÍDA
+              - generic [ref=f5e50]: Encaja las piezas antes de que el techo te aplaste.
+              - generic [ref=f5e51]:
+                - generic [ref=f5e52]:
+                  - generic [ref=f5e53]: MEJOR PUNTUACIÓN
+                  - generic [ref=f5e54]: "184.220"
+                - generic [ref=f5e55]: JUGAR
+          - link "ARCADE SERPENTINA Crece sin morder tu propia cola. MEJOR PUNTUACIÓN 7820 JUGAR" [ref=f5e56] [cursor=pointer]:
+            - /url: /juegos/serpentina
+            - generic [ref=f5e57]: ARCADE
+            - generic [ref=f5e60]:
+              - generic [ref=f5e61]: SERPENTINA
+              - generic [ref=f5e62]: Crece sin morder tu propia cola.
+              - generic [ref=f5e63]:
+                - generic [ref=f5e64]:
+                  - generic [ref=f5e65]: MEJOR PUNTUACIÓN
+                  - generic [ref=f5e66]: "7820"
+                - generic [ref=f5e67]: JUGAR
+          - link "••• ARCADE GLOTÓN Devora puntos y escapa de los fantasmas. MEJOR PUNTUACIÓN 96.400 JUGAR" [ref=f5e68] [cursor=pointer]:
+            - /url: /juegos/gloton
+            - generic [ref=f5e69]:
+              - generic [ref=f5e70]: •••
+              - generic [ref=f5e71]: ARCADE
+            - generic [ref=f5e72]:
+              - generic [ref=f5e73]: GLOTÓN
+              - generic [ref=f5e74]: Devora puntos y escapa de los fantasmas.
+              - generic [ref=f5e75]:
+                - generic [ref=f5e76]:
+                  - generic [ref=f5e77]: MEJOR PUNTUACIÓN
+                  - generic [ref=f5e78]: "96.400"
+                - generic [ref=f5e79]: JUGAR
+          - link "SHOOTER INVASORES Defiende el planeta de filas alienígenas. MEJOR PUNTUACIÓN 54.190 JUGAR" [ref=f5e80] [cursor=pointer]:
+            - /url: /juegos/invasores
+            - generic [ref=f5e81]: SHOOTER
+            - generic [ref=f5e84]:
+              - generic [ref=f5e85]: INVASORES
+              - generic [ref=f5e86]: Defiende el planeta de filas alienígenas.
+              - generic [ref=f5e87]:
+                - generic [ref=f5e88]:
+                  - generic [ref=f5e89]: MEJOR PUNTUACIÓN
+                  - generic [ref=f5e90]: "54.190"
+                - generic [ref=f5e91]: JUGAR
+          - link "▲ SHOOTER ROCAS Pulveriza asteroides en gravedad cero. MEJOR PUNTUACIÓN 41.200 JUGAR" [ref=f5e92] [cursor=pointer]:
+            - /url: /juegos/rocas
+            - generic [ref=f5e93]:
+              - generic [ref=f5e94]: ▲
+              - generic [ref=f5e95]: SHOOTER
+            - generic [ref=f5e96]:
+              - generic [ref=f5e97]: ROCAS
+              - generic [ref=f5e98]: Pulveriza asteroides en gravedad cero.
+              - generic [ref=f5e99]:
+                - generic [ref=f5e100]:
+                  - generic [ref=f5e101]: MEJOR PUNTUACIÓN
+                  - generic [ref=f5e102]: "41.200"
+                - generic [ref=f5e103]: JUGAR
+          - link "ARCADE RANARIA Cruza la autopista de pixeles. MEJOR PUNTUACIÓN 18.900 JUGAR" [ref=f5e104] [cursor=pointer]:
+            - /url: /juegos/ranaria
+            - generic [ref=f5e105]: ARCADE
+            - generic [ref=f5e108]:
+              - generic [ref=f5e109]: RANARIA
+              - generic [ref=f5e110]: Cruza la autopista de pixeles.
+              - generic [ref=f5e111]:
+                - generic [ref=f5e112]:
+                  - generic [ref=f5e113]: MEJOR PUNTUACIÓN
+                  - generic [ref=f5e114]: "18.900"
+                - generic [ref=f5e115]: JUGAR
+          - link "VERSUS DUELO PIXEL Dos paletas. Una pelota. Reflejos máximos. MEJOR PUNTUACIÓN 24 JUGAR" [ref=f5e116] [cursor=pointer]:
+            - /url: /juegos/duelo-pixel
+            - generic [ref=f5e117]: VERSUS
+            - generic [ref=f5e120]:
+              - generic [ref=f5e121]: DUELO PIXEL
+              - generic [ref=f5e122]: Dos paletas. Una pelota. Reflejos máximos.
+              - generic [ref=f5e123]:
+                - generic [ref=f5e124]:
+                  - generic [ref=f5e125]: MEJOR PUNTUACIÓN
+                  - generic [ref=f5e126]: "24"
+                - generic [ref=f5e127]: JUGAR
+    - contentinfo [ref=f5e128]: © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=f5e134] [cursor=pointer]
