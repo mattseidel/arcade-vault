@@ -8,6 +8,9 @@ Arcade Vault: online platform to play games and compete for the highest score. E
 
 The project follows Spec Driven Design (`/spec` and `/spec-impl` workflow) using skills from `Klerith/fernando-skills` (`npx skills@latest add Klerith/fernando-skills`).
 
+## Skills
+usa siempre el /frontend-design para diseñar la interfaz de usuario
+
 ## Commands
 
 - `npm run dev` — dev server (http://localhost:3000)
