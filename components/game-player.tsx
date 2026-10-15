@@ -2,13 +2,18 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AsteroidsCanvas } from "@/components/games/asteroidsCanvas";
+import { saveScore } from "@/app/juegos/[id]/jugar/actions";
+import type { SaveScoreResult } from "@/lib/scores";
 const LIVES = 3;
+type SaveState = { status: "idle" } | { status: "saving" } | SaveScoreResult;
 export function GamePlayer({ id, title }: { id: string; title: string }) {
   const [score, setScore] = useState(0);
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(false);
   const [name, setName] = useState("INVITADO");
+  // ponytail: `saved` es el guardado visual de los juegos simulados; `save` es el real de rocas
   const [saved, setSaved] = useState(false);
+  const [save, setSave] = useState<SaveState>({ status: "idle" });
   const [lives, setLives] = useState(LIVES);
   const [engineLevel, setEngineLevel] = useState(1);
   const [runKey, setRunKey] = useState(0);
@@ -32,7 +37,26 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
     setPaused(false);
     setOver(false);
     setSaved(false);
+    setSave({ status: "idle" });
   };
+  const submit = async () => {
+    setSave({ status: "saving" });
+    try {
+      setSave(await saveScore(id, name, score));
+    } catch {
+      // ponytail: fallo de red; la Server Action ya devuelve sus errores como valor
+      setSave({
+        status: "error",
+        message: "No se pudo guardar la puntuación.",
+      });
+    }
+  };
+  const toast =
+    save.status !== "saved"
+      ? "PUNTUACIÓN GUARDADA"
+      : save.improved
+        ? "NUEVO RÉCORD PERSONAL"
+        : `TU MEJOR MARCA ES ${save.best.toLocaleString("es-ES", { useGrouping: "always" })}`;
   return (
     <div className="av-player fade-in">
       <div className="player-hud">
@@ -134,23 +158,41 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
             <h2>FIN DEL JUEGO</h2>
             <div className="final-label">PUNTUACIÓN FINAL</div>
             <div className="final">{score.toLocaleString("es-ES")}</div>
-            {!saved ? (
-              <div className="input-row">
-                <input
-                  value={name}
-                  onChange={(e) =>
-                    setName(e.target.value.toUpperCase().slice(0, 10))
-                  }
-                  placeholder="TUS INICIALES"
-                  aria-label="Tus iniciales"
-                />
-                {/* ponytail: guardar no persiste nada (fuera de alcance del spec 01) */}
-                <button className="btn yellow" onClick={() => setSaved(true)}>
-                  GUARDAR PUNTUACIÓN
-                </button>
-              </div>
+            {!saved && save.status !== "saved" ? (
+              <>
+                <div className="input-row">
+                  <input
+                    value={name}
+                    onChange={(e) =>
+                      setName(e.target.value.toUpperCase().slice(0, 10))
+                    }
+                    placeholder="TUS INICIALES"
+                    aria-label="Tus iniciales"
+                  />
+                  {/* ponytail: los juegos simulados no persisten nada, solo rocas guarda */}
+                  <button
+                    className="btn yellow"
+                    disabled={save.status === "saving"}
+                    onClick={isRocas ? submit : () => setSaved(true)}
+                  >
+                    {save.status === "saving"
+                      ? "GUARDANDO…"
+                      : "GUARDAR PUNTUACIÓN"}
+                  </button>
+                </div>
+                {save.status === "error" && (
+                  <div className="contact-error" role="alert">
+                    [ERROR] {save.message} Inténtalo de nuevo.
+                  </div>
+                )}
+              </>
             ) : (
-              <div className="toast-saved">▸ PUNTUACIÓN GUARDADA_</div>
+              <div
+                className="toast-saved"
+                style={{ "--n": toast.length + 2 } as React.CSSProperties}
+              >
+                ▸ {toast}_
+              </div>
             )}
             <div className="actions">
               <button className="btn" onClick={restart}>
