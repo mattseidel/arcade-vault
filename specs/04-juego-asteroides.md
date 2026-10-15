@@ -1,6 +1,6 @@
 # SPEC 04 — Juego Asteroides en el reproductor
 
-> **Status:** Approved
+> **Status:** Implemented
 > **Depends on:** SPEC 01 (`components/game-player.tsx`, `app/juegos/[id]/jugar/page.tsx`, `lib/games.ts`, estilos CRT en `app/globals.css`)
 > **Date:** 2026-10-15
 > **Objective:** Portar el juego de `references/started-games/02-asteroids` a un módulo TypeScript y jugarlo en `/juegos/rocas/jugar` dentro del `GamePlayer` de la plataforma, con puntuación, vidas y nivel reales.
