@@ -4,6 +4,8 @@ import { createCaida } from "@/lib/games/caida/engine";
 import { BLOCK, COLS, ROWS } from "@/lib/games/caida/constants";
 import { createBloqueBuster } from "@/lib/games/bloqueBuster/engine";
 import { H as BH, W as BW } from "@/lib/games/bloqueBuster/constants";
+import { createSerpentina } from "@/lib/games/serpentina/engine";
+import { H as SH, W as SW } from "@/lib/games/serpentina/constants";
 import type { CreateGame } from "@/lib/games/types";
 export type RealGame = {
   create: CreateGame;
@@ -19,6 +21,12 @@ export const REAL_GAMES: Record<string, RealGame> = {
     width: BW,
     height: BH,
     lives: true,
+  },
+  serpentina: {
+    create: createSerpentina,
+    width: SW,
+    height: SH,
+    lives: false,
   },
   caida: {
     create: createCaida,
