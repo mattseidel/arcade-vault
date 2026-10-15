@@ -1,7 +1,9 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AsteroidsCanvas } from "@/components/games/asteroidsCanvas";
+import { GameCanvas } from "@/components/games/game-canvas";
+import { REAL_GAMES } from "@/components/games/registry";
+import { RANKED_GAMES } from "@/lib/games";
 import { saveScore } from "@/app/juegos/[id]/jugar/actions";
 import type { SaveScoreResult } from "@/lib/scores";
 const LIVES = 3;
@@ -11,24 +13,24 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(false);
   const [name, setName] = useState("INVITADO");
-  // ponytail: `saved` es el guardado visual de los juegos simulados; `save` es el real de rocas
+  // ponytail: `saved` es el guardado visual de los juegos simulados; `save` es el real de los RANKED_GAMES
   const [saved, setSaved] = useState(false);
   const [save, setSave] = useState<SaveState>({ status: "idle" });
   const [lives, setLives] = useState(LIVES);
   const [engineLevel, setEngineLevel] = useState(1);
   const [runKey, setRunKey] = useState(0);
-  // ponytail: por ahora un solo juego real; con 2 o 3 se pasa a un registro de juegos
-  const isRocas = id === "rocas";
+  const real = REAL_GAMES[id];
+  const ranked = (RANKED_GAMES as readonly string[]).includes(id);
   // ponytail: en los juegos simulados el nivel se deriva de la puntuación
-  const level = isRocas ? engineLevel : 1 + Math.floor(score / 2500);
+  const level = real ? engineLevel : 1 + Math.floor(score / 2500);
   useEffect(() => {
-    if (isRocas || over || paused) return;
+    if (real || over || paused) return;
     const t = setInterval(
       () => setScore((s) => s + Math.floor(10 + Math.random() * 90)),
       220,
     );
     return () => clearInterval(t);
-  }, [isRocas, over, paused]);
+  }, [real, over, paused]);
   const restart = () => {
     setScore(0);
     setLives(LIVES);
@@ -71,10 +73,12 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
             <div className="l">Puntuación</div>
             <div className="v">{score.toLocaleString("es-ES")}</div>
           </div>
-          <div className="hud-stat lives">
-            <div className="l">Vidas</div>
-            <div className="v">{"♥ ".repeat(lives).trim()}</div>
-          </div>
+          {(!real || real.lives) && (
+            <div className="hud-stat lives">
+              <div className="l">Vidas</div>
+              <div className="v">{"♥ ".repeat(lives).trim()}</div>
+            </div>
+          )}
           <div className="hud-stat level">
             <div className="l">Nivel</div>
             <div className="v">{String(level).padStart(2, "0")}</div>
@@ -101,8 +105,9 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
       </div>
       <div className="crt">
         <div className="crt-screen">
-          {isRocas ? (
-            <AsteroidsCanvas
+          {real ? (
+            <GameCanvas
+              game={real}
               paused={paused || over}
               runKey={runKey}
               onStats={(s) => {
@@ -121,7 +126,7 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
               <div className="player-ship"></div>
             </div>
           )}
-          {isRocas && <div className="keyboard-notice">REQUIERE TECLADO</div>}
+          {real && <div className="keyboard-notice">REQUIERE TECLADO</div>}
           {paused && !over && (
             <div
               className="crt-content"
@@ -169,11 +174,11 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
                     placeholder="TUS INICIALES"
                     aria-label="Tus iniciales"
                   />
-                  {/* ponytail: los juegos simulados no persisten nada, solo rocas guarda */}
+                  {/* ponytail: los juegos simulados no persisten nada, solo los RANKED_GAMES guardan */}
                   <button
                     className="btn yellow"
                     disabled={save.status === "saving"}
-                    onClick={isRocas ? submit : () => setSaved(true)}
+                    onClick={ranked ? submit : () => setSaved(true)}
                   >
                     {save.status === "saving"
                       ? "GUARDANDO…"

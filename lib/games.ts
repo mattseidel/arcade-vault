@@ -1,6 +1,5 @@
 export type GameColor = "cyan" | "magenta" | "green" | "yellow";
 export type Category = "ARCADE" | "PUZZLE" | "SHOOTER" | "VERSUS";
-
 export type Game = {
   id: string;
   title: string;
@@ -12,7 +11,6 @@ export type Game = {
   best: number;
   plays: string;
 };
-
 export const GAMES: Game[] = [
   {
     id: "bloque-buster",
@@ -103,7 +101,8 @@ export const GAMES: Game[] = [
     plays: "4.2K",
   },
 ];
-
+// juegos que guardan puntuación en Supabase (debe coincidir con submit_score)
+export const RANKED_GAMES = ["rocas", "caida"] as const;
 export const CATS: ("TODOS" | Category)[] = [
   "TODOS",
   "ARCADE",

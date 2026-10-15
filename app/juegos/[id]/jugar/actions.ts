@@ -1,6 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
+import { RANKED_GAMES } from "@/lib/games";
 import type { SaveScoreResult } from "@/lib/scores";
 const NAME_RE = /^[A-Z0-9_ ]{1,10}$/;
 const MAX_SCORE = 10_000_000;
@@ -16,7 +17,11 @@ export async function saveScore(
   const player = String(name ?? "")
     .trim()
     .toUpperCase();
-  if (gameId !== "rocas" || !NAME_RE.test(player)) return fail();
+  if (
+    !(RANKED_GAMES as readonly string[]).includes(gameId) ||
+    !NAME_RE.test(player)
+  )
+    return fail();
   if (!Number.isInteger(score) || score < 1 || score > MAX_SCORE) return fail();
   try {
     const supabase = createClient(await cookies());
