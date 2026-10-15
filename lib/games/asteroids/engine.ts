@@ -17,6 +17,17 @@ import {
 } from "./entities";
 import type { AsteroidsCallbacks, AsteroidsEngine } from "./types";
 type State = "playing" | "dead" | "gameover";
+const GAME_KEYS = new Set([
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "KeyW",
+  "KeyA",
+  "KeyS",
+  "KeyD",
+  "Space",
+]);
 export function createAsteroids(
   canvas: HTMLCanvasElement,
   cb: AsteroidsCallbacks,
@@ -27,6 +38,11 @@ export function createAsteroids(
   const keys: Keys = {};
   const justPressed: Keys = {};
   const onKeyDown = (e: KeyboardEvent) => {
+    // Evita el scroll de la página con las teclas de juego (salvo al escribir en un campo)
+    const t = e.target as HTMLElement | null;
+    const typing = t?.tagName === "INPUT" || t?.tagName === "TEXTAREA";
+    if (!typing && !paused && state !== "gameover" && GAME_KEYS.has(e.code))
+      e.preventDefault();
     if (!keys[e.code]) justPressed[e.code] = true;
     keys[e.code] = true;
   };

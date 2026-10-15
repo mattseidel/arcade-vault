@@ -163,9 +163,9 @@ export class Ship {
     const ROT = 3.5; // rad/s
     const THRUST = 260; // px/s²
     const DRAG = 0.987;
-    if (keys["ArrowLeft"]) this.angle -= ROT * dt;
-    if (keys["ArrowRight"]) this.angle += ROT * dt;
-    this.thrusting = !!keys["ArrowUp"];
+    if (keys["ArrowLeft"] || keys["KeyA"]) this.angle -= ROT * dt;
+    if (keys["ArrowRight"] || keys["KeyD"]) this.angle += ROT * dt;
+    this.thrusting = !!(keys["ArrowUp"] || keys["KeyW"]);
     if (this.thrusting) {
       this.vx += Math.cos(this.angle) * THRUST * dt;
       this.vy += Math.sin(this.angle) * THRUST * dt;

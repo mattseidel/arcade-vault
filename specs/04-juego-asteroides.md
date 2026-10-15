@@ -16,7 +16,7 @@
 - Integración con `GamePlayer` para el id `rocas`: el canvas reemplaza la arena decorativa dentro del marco CRT; HUD (jugador, puntuación, vidas, nivel), PAUSA, FIN y modal "FIN DEL JUEGO" son los de la plataforma, alimentados por callbacks del motor.
 - Se eliminan del canvas el HUD y el overlay "GAME OVER" del original (los dibuja la plataforma). El HUD del canvas solo conserva el contador del triple disparo (`3x 4.2s`), que la plataforma no tiene.
 - Estética original: líneas blancas sobre negro, llama naranja, power-up cian, dentro del marco CRT neón.
-- Controles solo de teclado (←/→ rotar, ↑ propulsar, Espacio disparar), con `preventDefault` en esas teclas mientras el juego está activo para que la página no haga scroll. En pantallas táctiles sin teclado se muestra un aviso "REQUIERE TECLADO".
+- Controles solo de teclado (←/→ o A/D rotar, ↑ o W propulsar, Espacio disparar; `S` sin función), con `preventDefault` en esas teclas mientras el juego está activo para que la página no haga scroll. En pantallas táctiles sin teclado se muestra un aviso "REQUIERE TECLADO".
 - Pausa real: PAUSA congela el motor; REANUDAR continúa donde estaba. "JUGAR DE NUEVO" reinicia el motor.
 - Canvas escalado por CSS al ancho disponible del marco CRT, manteniendo la proporción 4:3.
 - Los demás juegos del catálogo mantienen la simulación actual de `GamePlayer`.
@@ -91,7 +91,7 @@ Convenciones:
 4. Integrar en `components/game-player.tsx`: si `id === "rocas"`, renderizar `AsteroidsCanvas` en lugar de la arena decorativa y reemplazar el `setInterval` simulado por `onStats`/`onGameOver` (vidas con `"♥ ".repeat(lives)`, nivel del motor, `over` al terminar). Para los demás ids el comportamiento no cambia. Verificar: `/juegos/rocas/jugar` muestra el juego y los otros juegos siguen simulando.
 5. Conectar PAUSA/REANUDAR, FIN (termina la partida con la puntuación actual) y "JUGAR DE NUEVO" con el motor; el overlay "EN PAUSA" existente se muestra sobre el canvas. Verificar: PAUSA congela asteroides y nave; REANUDAR continúa; "JUGAR DE NUEVO" empieza en 0 con 3 vidas.
 6. Estilos en `app/globals.css`: canvas al 100% del ancho de `.crt-screen` con `aspect-ratio: 4 / 3` y `image-rendering` por defecto; aviso "REQUIERE TECLADO" visible solo con `@media (pointer: coarse)`. Verificar: a 375px y 1280px el canvas no desborda y mantiene 4:3.
-7. Evitar el scroll por teclado: `preventDefault` en `ArrowUp/Down/Left/Right` y `Space` mientras el motor está corriendo y el juego no está en pausa ni con el modal abierto. Verificar: jugar con flechas y espacio no desplaza la página.
+7. Evitar el scroll por teclado: `preventDefault` en `ArrowUp/Down/Left/Right`, `KeyW/KeyA/KeyS/KeyD` y `Space` (ignorando eventos que vienen de un `input`/`textarea`) mientras el motor está corriendo y el juego no está en pausa ni con el modal abierto. Verificar: jugar con flechas, WASD y espacio no desplaza la página y se puede escribir en el input de iniciales del modal.
 8. Revisión con Playwright en `.playwright-screenshots/`: capturas del juego en curso, pausa y modal de fin de juego, a ~375px y 1280px. Verificar: sin errores en consola.
 
 ---
@@ -100,7 +100,7 @@ Convenciones:
 
 - [ ] `npm run build` y `npm run lint` terminan sin errores.
 - [ ] `/juegos/rocas/jugar` muestra un canvas con la nave en el centro, 4 asteroides grandes y nivel 01, puntuación 0 y 3 vidas en el HUD de la plataforma.
-- [ ] ← y → rotan la nave, ↑ la propulsa (con llama naranja) y Espacio dispara una bala.
+- [ ] ← y → (o A y D) rotan la nave, ↑ (o W) la propulsa (con llama naranja) y Espacio dispara una bala.
 - [ ] Destruir un asteroide grande suma exactamente 20 puntos, uno mediano 50 y uno pequeño 100; el HUD de la plataforma refleja la cifra.
 - [ ] Un asteroide grande se parte en 2 medianos, un mediano en 2 pequeños y un pequeño desaparece.
 - [ ] La nave, las balas y los asteroides que salen por un borde reaparecen por el opuesto.
@@ -112,7 +112,7 @@ Convenciones:
 - [ ] "JUGAR DE NUEVO" inicia una partida con puntuación 0, 3 vidas y nivel 01.
 - [ ] Recoger el power-up cian `3x` activa el triple disparo y el contador `3x N.Ns` aparece en el canvas durante 5 s.
 - [ ] "GUARDAR PUNTUACIÓN" muestra "PUNTUACIÓN GUARDADA_" sin llamadas de red.
-- [ ] Pulsar flechas y Espacio durante la partida no desplaza la página.
+- [ ] Pulsar flechas, WASD y Espacio durante la partida no desplaza la página.
 - [ ] Salir de la pantalla (SALIR, VOLVER AL VAULT o navegación) detiene el loop: sin `requestAnimationFrame` ni listeners de teclado residuales (comprobable en DevTools: el juego anterior no reacciona al teclado en otra página).
 - [ ] Los demás juegos (`/juegos/caida/jugar`, etc.) siguen con la simulación actual.
 - [ ] A 375px el canvas no genera scroll horizontal y mantiene proporción 4:3; con `pointer: coarse` aparece el aviso "REQUIERE TECLADO".

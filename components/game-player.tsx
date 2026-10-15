@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { AsteroidsCanvas } from "@/components/games/asteroidsCanvas";
 
 const LIVES = 3;
 
@@ -11,21 +12,29 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
   const [over, setOver] = useState(false);
   const [name, setName] = useState("INVITADO");
   const [saved, setSaved] = useState(false);
+  const [lives, setLives] = useState(LIVES);
+  const [engineLevel, setEngineLevel] = useState(1);
+  const [runKey, setRunKey] = useState(0);
 
-  // ponytail: nivel derivado de la puntuación, sin estado ni efecto extra
-  const level = 1 + Math.floor(score / 2500);
+  // ponytail: por ahora un solo juego real; con 2 o 3 se pasa a un registro de juegos
+  const isRocas = id === "rocas";
+  // ponytail: en los juegos simulados el nivel se deriva de la puntuación
+  const level = isRocas ? engineLevel : 1 + Math.floor(score / 2500);
 
   useEffect(() => {
-    if (over || paused) return;
+    if (isRocas || over || paused) return;
     const t = setInterval(
       () => setScore((s) => s + Math.floor(10 + Math.random() * 90)),
       220,
     );
     return () => clearInterval(t);
-  }, [over, paused]);
+  }, [isRocas, over, paused]);
 
   const restart = () => {
     setScore(0);
+    setLives(LIVES);
+    setEngineLevel(1);
+    setRunKey((k) => k + 1);
     setPaused(false);
     setOver(false);
     setSaved(false);
@@ -45,7 +54,7 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
           </div>
           <div className="hud-stat lives">
             <div className="l">Vidas</div>
-            <div className="v">{"♥ ".repeat(LIVES).trim()}</div>
+            <div className="v">{"♥ ".repeat(lives).trim()}</div>
           </div>
           <div className="hud-stat level">
             <div className="l">Nivel</div>
@@ -63,13 +72,26 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
 
       <div className="crt">
         <div className="crt-screen">
-          <div className="game-arena">
-            <div className="grid-floor"></div>
-            <div className="enemy e1"></div>
-            <div className="enemy e2"></div>
-            <div className="enemy e3"></div>
-            <div className="player-ship"></div>
-          </div>
+          {isRocas ? (
+            <AsteroidsCanvas
+              paused={paused}
+              runKey={runKey}
+              onStats={(s) => {
+                setScore(s.score);
+                setLives(s.lives);
+                setEngineLevel(s.level);
+              }}
+              onGameOver={() => setOver(true)}
+            />
+          ) : (
+            <div className="game-arena">
+              <div className="grid-floor"></div>
+              <div className="enemy e1"></div>
+              <div className="enemy e2"></div>
+              <div className="enemy e3"></div>
+              <div className="player-ship"></div>
+            </div>
+          )}
           {paused && (
             <div className="crt-content" style={{ background: "rgba(0,0,0,0.6)", zIndex: 5 }}>
               <div>
