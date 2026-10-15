@@ -715,6 +715,27 @@ a { color: inherit; text-decoration: none; }
   50% { transform: translate(20px, 10px); }
 }
 
+/* canvas del juego Asteroides: llena la pantalla CRT (4:3), lógica fija 800x600 */
+.asteroids-canvas {
+  position: absolute; inset: 0;
+  display: block;
+  width: 100%; height: 100%;
+}
+.keyboard-notice {
+  display: none;
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.8);
+  color: var(--yellow);
+  font-family: var(--pixel);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-align: center;
+}
+@media (pointer: coarse) {
+  .keyboard-notice { display: block; }
+}
+
 /* game over modal */
 .modal-bd {
   position: fixed; inset: 0; z-index: 80;
