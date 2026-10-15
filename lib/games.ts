@@ -102,7 +102,7 @@ export const GAMES: Game[] = [
   },
 ];
 // juegos que guardan puntuación en Supabase (debe coincidir con submit_score)
-export const RANKED_GAMES = ["rocas", "caida"] as const;
+export const RANKED_GAMES = ["rocas", "caida", "bloque-buster"] as const;
 export const CATS: ("TODOS" | Category)[] = [
   "TODOS",
   "ARCADE",
