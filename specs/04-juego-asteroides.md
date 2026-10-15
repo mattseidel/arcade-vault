@@ -12,7 +12,7 @@
 **In:**
 
 - Motor del juego en TypeScript sin globales ni DOM propio (`lib/games/asteroids/`), portado de `game.js`: nave, balas, asteroides (3 tamaños con división), partículas, power-up de triple disparo, vidas, niveles, invencibilidad al reaparecer, espacio toroidal, canvas lógico fijo de 800×600.
-- Componente cliente `components/games/asteroids-canvas.tsx` que monta el canvas, crea el motor y lo destruye al desmontar (listeners de teclado y `requestAnimationFrame` incluidos).
+- Componente cliente `components/games/asteroidsCanvas.tsx` que monta el canvas, crea el motor y lo destruye al desmontar (listeners de teclado y `requestAnimationFrame` incluidos).
 - Integración con `GamePlayer` para el id `rocas`: el canvas reemplaza la arena decorativa dentro del marco CRT; HUD (jugador, puntuación, vidas, nivel), PAUSA, FIN y modal "FIN DEL JUEGO" son los de la plataforma, alimentados por callbacks del motor.
 - Se eliminan del canvas el HUD y el overlay "GAME OVER" del original (los dibuja la plataforma). El HUD del canvas solo conserva el contador del triple disparo (`3x 4.2s`), que la plataforma no tiene.
 - Estética original: líneas blancas sobre negro, llama naranja, power-up cian, dentro del marco CRT neón.
@@ -87,7 +87,7 @@ Convenciones:
 
 1. Crear `lib/games/asteroids/constants.ts` y `types.ts`. Verificar: `npm run lint` pasa.
 2. Crear `lib/games/asteroids/engine.ts` portando `game.js` a TypeScript (clases `Bullet`, `Asteroid`, `PowerUp`, `Ship`, `Particle`, input, update, draw, loop) sin HUD de score/vidas/nivel ni overlay "GAME OVER"; emitir `onStats` y `onGameOver`; implementar `pause/resume/restart/destroy`. Si supera ~300 líneas, partir en `entities.ts` y `engine.ts`. Verificar: `npm run lint` y `tsc` pasan.
-3. Crear `components/games/asteroids-canvas.tsx` (client): `<canvas width=800 height=600>`, `useEffect` que crea el motor, lo arranca y llama `destroy()` en el cleanup; props `paused`, `runKey` (para reiniciar) y los callbacks. Verificar: lint pasa y no hay doble loop con Strict Mode (el cleanup limpia).
+3. Crear `components/games/asteroidsCanvas.tsx` (client): `<canvas width=800 height=600>`, `useEffect` que crea el motor, lo arranca y llama `destroy()` en el cleanup; props `paused`, `runKey` (para reiniciar) y los callbacks. Verificar: lint pasa y no hay doble loop con Strict Mode (el cleanup limpia).
 4. Integrar en `components/game-player.tsx`: si `id === "rocas"`, renderizar `AsteroidsCanvas` en lugar de la arena decorativa y reemplazar el `setInterval` simulado por `onStats`/`onGameOver` (vidas con `"♥ ".repeat(lives)`, nivel del motor, `over` al terminar). Para los demás ids el comportamiento no cambia. Verificar: `/juegos/rocas/jugar` muestra el juego y los otros juegos siguen simulando.
 5. Conectar PAUSA/REANUDAR, FIN (termina la partida con la puntuación actual) y "JUGAR DE NUEVO" con el motor; el overlay "EN PAUSA" existente se muestra sobre el canvas. Verificar: PAUSA congela asteroides y nave; REANUDAR continúa; "JUGAR DE NUEVO" empieza en 0 con 3 vidas.
 6. Estilos en `app/globals.css`: canvas al 100% del ancho de `.crt-screen` con `aspect-ratio: 4 / 3` y `image-rendering` por defecto; aviso "REQUIERE TECLADO" visible solo con `@media (pointer: coarse)`. Verificar: a 375px y 1280px el canvas no desborda y mantiene 4:3.
