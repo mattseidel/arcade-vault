@@ -1,0 +1,67 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - navigation [ref=f4e3]:
+      - link "ARCADE VAULT" [ref=f4e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f4e7]:
+        - link "Inicio" [ref=f4e8] [cursor=pointer]:
+          - /url: /
+        - link "Biblioteca" [ref=f4e9] [cursor=pointer]:
+          - /url: /biblioteca
+        - link "Salón de la Fama" [ref=f4e10] [cursor=pointer]:
+          - /url: /salon
+        - link "Acerca de" [ref=f4e11] [cursor=pointer]:
+          - /url: /about
+      - generic [ref=f4e12]: CRÉDITOS · 03
+      - link "Iniciar Sesión" [ref=f4e15] [cursor=pointer]:
+        - /url: /login
+    - complementary [ref=f4e16]:
+      - generic [ref=f4e17]: MENÚ
+      - link "Inicio" [ref=f4e18] [cursor=pointer]:
+        - /url: /
+      - link "Biblioteca" [ref=f4e19] [cursor=pointer]:
+        - /url: /biblioteca
+      - link "Salón de la Fama" [ref=f4e20] [cursor=pointer]:
+        - /url: /salon
+      - link "Acerca de" [ref=f4e21] [cursor=pointer]:
+        - /url: /about
+      - link "Iniciar Sesión" [ref=f4e22] [cursor=pointer]:
+        - /url: /login
+      - generic [ref=f4e24]: CRÉDITOS · 03
+    - main [ref=f4e25]:
+      - generic [ref=f4e26]:
+        - generic [ref=f4e27]:
+          - generic [ref=f4e28]: ▸ ACERCA DE
+          - heading "ACERCA DE ARCADE VAULT" [level=1] [ref=f4e29]
+          - paragraph [ref=f4e30]: ARCADE VAULT nació del amor por los videojuegos clásicos. Nuestra misión es preservar y celebrar los arcades que definieron una generación, haciéndolos accesibles para todos, en cualquier lugar y sin costo.
+          - generic [ref=f4e31]:
+            - generic [ref=f4e32]: HECHO CON ❤️ PARA JUGADORES
+            - generic [ref=f4e36]: JUEGOS EN HTML — CORREN EN CUALQUIER NAVEGADOR
+            - generic [ref=f4e40]: PROYECTO EN CONSTANTE CRECIMIENTO
+        - generic [ref=f4e73]:
+          - generic [ref=f4e74]:
+            - generic [ref=f4e75]: ▸ CONTACTO
+            - heading "CONTÁCTANOS" [level=2] [ref=f4e76]
+            - paragraph [ref=f4e77]: ¿Tienes alguna sugerencia, quieres proponer un juego, o simplemente quieres saludar? Escríbenos.
+            - generic [ref=f4e78]:
+              - generic [ref=f4e79]: RESPUESTA EN 24-48H
+              - generic [ref=f4e81]: SUGERENCIAS BIENVENIDAS
+              - generic [ref=f4e83]: SIN SPAM, JAMÁS
+          - generic [ref=f4e85]:
+            - textbox [ref=f4e87]
+            - generic [ref=f4e88]:
+              - generic [ref=f4e89]: NOMBRE
+              - textbox "NOMBRE" [ref=f4e90]:
+                - /placeholder: px_kai
+            - generic [ref=f4e91]:
+              - generic [ref=f4e92]: CORREO ELECTRÓNICO
+              - textbox "CORREO ELECTRÓNICO" [ref=f4e93]:
+                - /placeholder: jugador@vault.gg
+            - generic [ref=f4e94]:
+              - generic [ref=f4e95]: MENSAJE
+              - textbox "MENSAJE" [ref=f4e96]:
+                - /placeholder: Cuéntanos qué tienes en mente…
+            - button "▶ ENVIAR MENSAJE" [ref=f4e97] [cursor=pointer]
+    - contentinfo [ref=f4e98]: © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=f4e104] [cursor=pointer]
+  - alert [ref=f4e108]

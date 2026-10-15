@@ -1,0 +1,29 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/format.mjs\"",
+            "timeout": 60,
+            "statusMessage": "Prettier + ESLint..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "Add-Type -AssemblyName PresentationCore; $p = New-Object System.Windows.Media.MediaPlayer; $p.Open([uri]\"$env:CLAUDE_PROJECT_DIR\\references\\claudecode-finished.mp3\"); $p.Play(); Start-Sleep -Seconds 3",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}
