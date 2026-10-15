@@ -79,7 +79,7 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
         <div className="crt-screen">
           {isRocas ? (
             <AsteroidsCanvas
-              paused={paused}
+              paused={paused || over}
               runKey={runKey}
               onStats={(s) => {
                 setScore(s.score);
@@ -97,7 +97,8 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
               <div className="player-ship"></div>
             </div>
           )}
-          {paused && (
+          {isRocas && <div className="keyboard-notice">REQUIERE TECLADO</div>}
+          {paused && !over && (
             <div
               className="crt-content"
               style={{ background: "rgba(0,0,0,0.6)", zIndex: 5 }}
