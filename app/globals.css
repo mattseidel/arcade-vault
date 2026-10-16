@@ -800,6 +800,32 @@ a {
     radial-gradient(circle at 50% 55%, var(--green) 0 14px, transparent 15px);
   filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.5));
 }
+.cover-frogger {
+  background: linear-gradient(180deg, #021a3a 0 48%, #0b0b14 48%);
+}
+.cover-frogger::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 40% 30%, var(--green) 0 11px, transparent 12px),
+    linear-gradient(#8a5a2b, #8a5a2b) 18% 30%/46% 9px no-repeat,
+    linear-gradient(#8a5a2b, #8a5a2b) 62% 12%/30% 9px no-repeat,
+    linear-gradient(var(--magenta), var(--magenta)) 58% 74%/26% 12px no-repeat,
+    repeating-linear-gradient(
+        90deg,
+        var(--yellow) 0 18px,
+        transparent 18px 36px
+      )
+      0 66%/100% 2px no-repeat,
+    repeating-linear-gradient(
+        90deg,
+        var(--yellow) 0 18px,
+        transparent 18px 36px
+      )
+      0 88%/100% 2px no-repeat;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.5));
+}
 .cover-salto {
   background: linear-gradient(180deg, #0a0420, #05030f);
 }
@@ -1188,6 +1214,7 @@ a {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: contain; /* conserva la proporción si no es 4:3 (Frogger 8:7) */
 }
 /* canvas alto (Caída, 1:2) centrado en la pantalla 4:3 con la vista previa al lado */
 .game-canvas-wrap {
@@ -1227,6 +1254,12 @@ a {
   display: none;
 }
 @media (pointer: coarse) {
+  /* móvil en horizontal: la pantalla CRT cabe en alto; el canvas se encaja con object-fit */
+  @media (orientation: landscape) {
+    .crt-screen {
+      max-height: 80svh;
+    }
+  }
   .gamepad {
     --dp: clamp(48px, 13.5vw, 56px); /* lado de cada flecha de la cruceta */
     --ab: clamp(56px, 17vw, 74px); /* diámetro de A/B */
