@@ -6,6 +6,7 @@ export type ScoreRow = {
 };
 export type SaveScoreResult =
   | { status: "saved"; improved: boolean; best: number }
+  | { status: "needs_login" }
   | { status: "error"; message: string };
 const PLAYERS = [
   "PX_KAI",

@@ -3,7 +3,6 @@ import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { RANKED_GAMES } from "@/lib/games";
 import type { SaveScoreResult } from "@/lib/scores";
-const NAME_RE = /^[A-Z0-9_ ]{1,10}$/;
 const MAX_SCORE = 10_000_000;
 const fail = (): SaveScoreResult => ({
   status: "error",
@@ -11,23 +10,24 @@ const fail = (): SaveScoreResult => ({
 });
 export async function saveScore(
   gameId: string,
-  name: string,
   score: number,
 ): Promise<SaveScoreResult> {
-  const player = String(name ?? "")
-    .trim()
-    .toUpperCase();
-  if (
-    !(RANKED_GAMES as readonly string[]).includes(gameId) ||
-    !NAME_RE.test(player)
-  )
-    return fail();
+  if (!(RANKED_GAMES as readonly string[]).includes(gameId)) return fail();
   if (!Number.isInteger(score) || score < 1 || score > MAX_SCORE) return fail();
   try {
     const supabase = createClient(await cookies());
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return { status: "needs_login" };
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("id")
+      .eq("id", user.id)
+      .maybeSingle();
+    if (!profile) return { status: "needs_login" };
     const { data, error } = await supabase.rpc("submit_score", {
       p_game_id: gameId,
-      p_player_name: player,
       p_score: score,
     });
     if (error || !data?.[0]) {

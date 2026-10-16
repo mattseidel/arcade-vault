@@ -1,0 +1,57 @@
+- generic [active] [ref=f15e1]:
+  - generic [ref=f15e2]:
+    - navigation [ref=f15e3]:
+      - link "ARCADE VAULT" [ref=f15e4] [cursor=pointer]:
+        - /url: /
+      - button "Menú" [ref=f15e7] [cursor=pointer]: ≡
+    - complementary [ref=f15e8]:
+      - generic [ref=f15e9]: MENÚ
+      - link "Inicio" [ref=f15e10] [cursor=pointer]:
+        - /url: /
+      - link "Biblioteca" [ref=f15e11] [cursor=pointer]:
+        - /url: /biblioteca
+      - link "Salón de la Fama" [ref=f15e12] [cursor=pointer]:
+        - /url: /salon
+      - link "Acerca de" [ref=f15e13] [cursor=pointer]:
+        - /url: /about
+      - link "Iniciar Sesión" [ref=f15e14] [cursor=pointer]:
+        - /url: /login
+      - generic [ref=f15e16]: CRÉDITOS · 03
+    - main [ref=f15e17]:
+      - generic [ref=f15e18]:
+        - generic [ref=f15e19]:
+          - heading "SALÓN DE LA FAMA" [level=1] [ref=f15e20]
+          - paragraph [ref=f15e21]: LOS NOMBRES QUE NUNCA SE BORRAN DE LA PANTALLA
+        - generic [ref=f15e22]:
+          - button "BLOQUE BUSTER" [ref=f15e23] [cursor=pointer]
+          - button "CAÍDA" [ref=f15e24] [cursor=pointer]
+          - button "SERPENTINA" [ref=f15e25] [cursor=pointer]
+          - button "GLOTÓN" [ref=f15e26] [cursor=pointer]
+          - button "INVASORES" [ref=f15e27] [cursor=pointer]
+          - button "ROCAS" [ref=f15e28] [cursor=pointer]
+          - button "RANARIA" [ref=f15e29] [cursor=pointer]
+          - button "DUELO PIXEL" [ref=f15e30] [cursor=pointer]
+          - button "SALTO NEÓN" [ref=f15e31] [cursor=pointer]
+          - button "FROGGER" [ref=f15e32] [cursor=pointer]
+        - generic [ref=f15e34]:
+          - generic [ref=f15e35]: CAMPEÓN
+          - generic [ref=f15e36]: "01"
+          - generic [ref=f15e37]: INVITADO
+          - generic [ref=f15e38]: "90"
+          - generic [ref=f15e39]: 15/10/2026
+        - generic [ref=f15e40]:
+          - generic [ref=f15e41]:
+            - generic [ref=f15e42]: RANGO
+            - generic [ref=f15e43]: JUGADOR
+            - generic [ref=f15e44]: PUNTUACIÓN
+            - generic [ref=f15e45]: FECHA
+          - generic [ref=f15e46]:
+            - generic [ref=f15e47]: "#01"
+            - generic [ref=f15e48]: INVITADO
+            - generic [ref=f15e49]: "90"
+            - generic [ref=f15e50]: 15/10/2026
+        - link "VOLVER A LA BIBLIOTECA" [ref=f15e52] [cursor=pointer]:
+          - /url: /biblioteca
+    - contentinfo [ref=f15e53]: © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=f15e59] [cursor=pointer]
+  - alert [ref=f15e63]

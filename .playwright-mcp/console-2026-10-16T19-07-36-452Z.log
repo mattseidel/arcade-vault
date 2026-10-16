@@ -1,0 +1,120 @@
+[     185ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[     202ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   47003ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://accounts.google.com/v3/signin/identifier?opparams=%253Fredirect_to%253Dhttp%25253A%25252F%25252Flocalhost%25253A3000%25252Fauth%25252Fcallback&dsh=S1158918438%3A1792177704553414&client_id=608445479367-eklmp7t25ded7i5nvsn69lfu8i2visc0.apps.googleusercontent.com&o2v=2&redirect_uri=https%3A%2F%2Fomjatbgsuomnbenrpicp.supabase.co%2Fauth%2Fv1%2Fcallback&response_type=code&scope=email+profile&service=lso&state=a13e9540-2c92-4313-ae5e-9eb0e0e73758&flowName=GeneralOAuthFlow&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fv3%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hAO1FROUimyupm68tKPewFXg0VpQTwFD56WWzxCXWqhA5gZf8oM5ajW0KrGhE0Qfg05-SdPpslfUF3Z07idt8eZeXx06pDVQQy3WTA1Y9e7WkUGGvIM2TbYyIQ7afnmRzTP1KixYTmgyJhZwYRZ8QYDCTq4jyOLrASUbGu3s6R-gI0kogKYn_nmBNP9O1ccwNfA-5uoHZr4sVxZAAuPf6BGWxH_TmtqaSlLugnKF2xhqhbneoIBNVQoIPwOMP8zHNJEhYxrjUhn7uBzWhk8gK1dV2xU3TNPGEy3ZucwfNR5NkZw0u1GQPs9K-yH5Pwtlery1EFKpTBllAZVO9ajHdBaCPbxFnChzfcQlfnTaN9N9Gg0tB5x0ACQylN43ibLp40DT4wUR4sc6NKw87beRGLJnhV4LPtuITbOOIGQiTFeWnCnxXRoFqwj4Hhgu0lFdz4ldWcOvlycFBQslmlorSuAB3MpTWqiYLFyMQ485_ix19DzfAhg%26flowName%3DGeneralOAuthFlow%26as%3DS1158918438%253A1792177704553414%26client_id%3D608445479367-eklmp7t25ded7i5nvsn69lfu8i2visc0.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fv3%252Fconsent%23&app_domain=https%3A%2F%2Fomjatbgsuomnbenrpicp.supabase.co&rart=ANgoxceP1enPP_strczzgCrRMtfStQYrflTyuJL4cmCzcAh5xOXPCZaJWR1LMB40B8B0vqnYyTkD312RSu-3gn1AUZQFXiGd8ujE9cMoQmnRpWc47AhHdPA:0
+[   47008ms] [LOG] %c%s color: red; background: yellow; font-size: 24px; WARNING! @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.en_US.cuPtHCB6dlo.es5.O/am=nw9EAAAAAI7gJQAASADQv5EABAjWAe-1AEyAkAEAAAAAAAAAAC4AAKgigA/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlHBRxQRFaAjjKkWdPW1WtDaSVfC-w/dti=1/m=_b,_tp:577
+[   47008ms] [LOG] %c%s font-size: 18px; Using this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.
+Do not enter or paste code that you do not understand. @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.en_US.cuPtHCB6dlo.es5.O/am=nw9EAAAAAI7gJQAASADQv5EABAjWAe-1AEyAkAEAAAAAAAAAAC4AAKgigA/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlHBRxQRFaAjjKkWdPW1WtDaSVfC-w/dti=1/m=_b,_tp:577
+[   47333ms] [WARNING] The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127 @ :0
+[   47337ms] [WARNING] The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127 @ :0
+[   76095ms] [WARNING] Blocked aria-hidden on an element because its descendant retained focus. The focus must not be hidden from assistive technology users. Avoid using aria-hidden on a focused element or its ancestor. Consider using the inert attribute instead, which will also prevent focus. For more details, see the aria-hidden section of the WAI-ARIA specification at https://w3c.github.io/aria/#aria-hidden.
+Element with focus: <div.VfPpkd-qNpTzb-P1ekSe VfPpkd-qNpTzb-P1ekSe-OWXEXe-A9y3zc VfPpkd-qNpTzb-P1ekSe-OWXEXe-OiiCO-IhfUye>
+Ancestor with aria-hidden: <div.wuMMWb> @ https://accounts.google.com/v3/signin/challenge/pk?TL=ADG-GRR3FX-iLTVzQqZcVqUFAWwjwZlSkZSfyjBSqmZx9HGq75LPY-gI4qRf43Un&app_domain=https%3A%2F%2Fomjatbgsuomnbenrpicp.supabase.co&checkConnection=youtube%3A176&checkedDomains=youtube&cid=1&client_id=608445479367-eklmp7t25ded7i5nvsn69lfu8i2visc0.apps.googleusercontent.com&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fv3%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hAO1FROUimyupm68tKPewFXg0VpQTwFD56WWzxCXWqhA5gZf8oM5ajW0KrGhE0Qfg05-SdPpslfUF3Z07idt8eZeXx06pDVQQy3WTA1Y9e7WkUGGvIM2TbYyIQ7afnmRzTP1KixYTmgyJhZwYRZ8QYDCTq4jyOLrASUbGu3s6R-gI0kogKYn_nmBNP9O1ccwNfA-5uoHZr4sVxZAAuPf6BGWxH_TmtqaSlLugnKF2xhqhbneoIBNVQoIPwOMP8zHNJEhYxrjUhn7uBzWhk8gK1dV2xU3TNPGEy3ZucwfNR5NkZw0u1GQPs9K-yH5Pwtlery1EFKpTBllAZVO9ajHdBaCPbxFnChzfcQlfnTaN9N9Gg0tB5x0ACQylN43ibLp40DT4wUR4sc6NKw87beRGLJnhV4LPtuITbOOIGQiTFeWnCnxXRoFqwj4Hhgu0lFdz4ldWcOvlycFBQslmlorSuAB3MpTWqiYLFyMQ485_ix19DzfAhg%26flowName%3DGeneralOAuthFlow%26as%3DS1158918438%253A1792177704553414%26client_id%3D608445479367-eklmp7t25ded7i5nvsn69lfu8i2visc0.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fv3%252Fconsent%23&dsh=S1158918438%3A1792177704553414&flowName=GeneralOAuthFlow&o2v=2&opparams=%253Fredirect_to%253Dhttp%25253A%25252F%25252Flocalhost%25253A3000%25252Fauth%25252Fcallback&pstMsg=1&rart=ANgoxceP1enPP_strczzgCrRMtfStQYrflTyuJL4cmCzcAh5xOXPCZaJWR1LMB40B8B0vqnYyTkD312RSu-3gn1AUZQFXiGd8ujE9cMoQmnRpWc47AhHdPA&redirect_uri=https%3A%2F%2Fomjatbgsuomnbenrpicp.supabase.co%2Fauth%2Fv1%2Fcallback&response_type=code&scope=email%20profile&service=lso&state=a13e9540-2c92-4313-ae5e-9eb0e0e73758:0
+[   79635ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://accounts.google.com/v3/signin/challenge/pwd?TL=ADG-GRR3FX-iLTVzQqZcVqUFAWwjwZlSkZSfyjBSqmZx9HGq75LPY-gI4qRf43Un&app_domain=https%3A%2F%2Fomjatbgsuomnbenrpicp.supabase.co&checkConnection=youtube%3A176&checkedDomains=youtube&cid=2&client_id=608445479367-eklmp7t25ded7i5nvsn69lfu8i2visc0.apps.googleusercontent.com&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fv3%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hAO1FROUimyupm68tKPewFXg0VpQTwFD56WWzxCXWqhA5gZf8oM5ajW0KrGhE0Qfg05-SdPpslfUF3Z07idt8eZeXx06pDVQQy3WTA1Y9e7WkUGGvIM2TbYyIQ7afnmRzTP1KixYTmgyJhZwYRZ8QYDCTq4jyOLrASUbGu3s6R-gI0kogKYn_nmBNP9O1ccwNfA-5uoHZr4sVxZAAuPf6BGWxH_TmtqaSlLugnKF2xhqhbneoIBNVQoIPwOMP8zHNJEhYxrjUhn7uBzWhk8gK1dV2xU3TNPGEy3ZucwfNR5NkZw0u1GQPs9K-yH5Pwtlery1EFKpTBllAZVO9ajHdBaCPbxFnChzfcQlfnTaN9N9Gg0tB5x0ACQylN43ibLp40DT4wUR4sc6NKw87beRGLJnhV4LPtuITbOOIGQiTFeWnCnxXRoFqwj4Hhgu0lFdz4ldWcOvlycFBQslmlorSuAB3MpTWqiYLFyMQ485_ix19DzfAhg%26flowName%3DGeneralOAuthFlow%26as%3DS1158918438%253A1792177704553414%26client_id%3D608445479367-eklmp7t25ded7i5nvsn69lfu8i2visc0.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fv3%252Fconsent%23&dsh=S1158918438%3A1792177704553414&flowName=GeneralOAuthFlow&o2v=2&opparams=%253Fredirect_to%253Dhttp%25253A%25252F%25252Flocalhost%25253A3000%25252Fauth%25252Fcallback&pstMsg=1&rart=ANgoxceP1enPP_strczzgCrRMtfStQYrflTyuJL4cmCzcAh5xOXPCZaJWR1LMB40B8B0vqnYyTkD312RSu-3gn1AUZQFXiGd8ujE9cMoQmnRpWc47AhHdPA&redirect_uri=https%3A%2F%2Fomjatbgsuomnbenrpicp.supabase.co%2Fauth%2Fv1%2Fcallback&response_type=code&scope=email%20profile&service=lso&state=a13e9540-2c92-4313-ae5e-9eb0e0e73758:0
+[   79982ms] [WARNING] The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127 @ :0
+[  121031ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  121055ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  121505ms] [ERROR] Error: Route "/": Next.js encountered the unstable value `Date.now()` while prerendering.
+
+This value can change between renders, so it must be either prerendered or computed later.
+
+Ways to fix this:
+  - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+  - [cache] Prerender and cache the value with `"use cache"`
+  - [client] Render the value on the client with `"use client"`
+  - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+
+Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+    at RootLayout (about://React/Server/file:///C:/Users/Usuario/Desktop/claude%2520code/arcade-vault/.next/dev/server/chunks/ssr/%255Broot-of-the-server%255D__0215-dfy7x-d1._.js?id=%255Bproject%255D/app/layout.tsx+%255Bapp-rsc%255D+(ecmascript)?229:58:290)
+    at resolveErrorDev (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2021:105)
+    at getOutlinedModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1560:28)
+    at parseModelString (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1680:50)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2626:66)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2629:61)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2708:112)
+    at parseModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2621:16)
+    at initializeModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1137:25)
+    at resolveModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1035:43)
+    at processFullStringRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2577:371)
+    at processFullBinaryRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2499:9)
+    at processBinaryChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2606:221)
+    at progress (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2793:13) @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[  128561ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  128578ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  129062ms] [ERROR] Error: Route "/": Next.js encountered the unstable value `Date.now()` while prerendering.
+
+This value can change between renders, so it must be either prerendered or computed later.
+
+Ways to fix this:
+  - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+  - [cache] Prerender and cache the value with `"use cache"`
+  - [client] Render the value on the client with `"use client"`
+  - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+
+Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+    at RootLayout (about://React/Server/file:///C:/Users/Usuario/Desktop/claude%2520code/arcade-vault/.next/dev/server/chunks/ssr/%255Broot-of-the-server%255D__0215-dfy7x-d1._.js?id=%255Bproject%255D/app/layout.tsx+%255Bapp-rsc%255D+(ecmascript)?229:58:290)
+    at resolveErrorDev (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2021:105)
+    at getOutlinedModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1560:28)
+    at parseModelString (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1680:50)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2626:66)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2629:61)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2708:112)
+    at parseModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2621:16)
+    at initializeModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1137:25)
+    at resolveModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1035:43)
+    at processFullStringRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2577:371)
+    at processFullBinaryRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2499:9)
+    at processBinaryChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2606:221)
+    at progress (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2793:13) @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[  135171ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  135184ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  135567ms] [ERROR] Error: Route "/juegos/[id]/jugar": Next.js encountered the unstable value `Date.now()` while prerendering.
+
+This value can change between renders, so it must be either prerendered or computed later.
+
+Ways to fix this:
+  - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+  - [cache] Prerender and cache the value with `"use cache"`
+  - [client] Render the value on the client with `"use client"`
+  - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+
+Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+    at RootLayout (about://React/Server/file:///C:/Users/Usuario/Desktop/claude%2520code/arcade-vault/.next/dev/server/chunks/ssr/%255Broot-of-the-server%255D__0215-dfy7x-d1._.js?id=%255Bproject%255D/app/layout.tsx+%255Bapp-rsc%255D+(ecmascript)?28:58:290)
+    at resolveErrorDev (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2021:105)
+    at getOutlinedModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1560:28)
+    at parseModelString (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1680:50)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2626:66)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2629:61)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2708:112)
+    at parseModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2621:16)
+    at initializeModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1137:25)
+    at resolveModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1035:43)
+    at processFullStringRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2577:371)
+    at processFullBinaryRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2499:9)
+    at processBinaryChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2606:221)
+    at progress (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2793:13) @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[  135782ms] [ERROR] Error: Route "/juegos/[id]/jugar": Next.js encountered the unstable value `Date.now()` while prerendering.
+
+This value can change between renders, so it must be either prerendered or computed later.
+
+Ways to fix this:
+  - [dynamic] Render at request time by adding a dynamic data access (e.g. `await connection()`) before this call
+  - [cache] Prerender and cache the value with `"use cache"`
+  - [client] Render the value on the client with `"use client"`
+  - [measure] If the value is for telemetry, use a timing API such as `performance.now()`
+
+Learn more: https://nextjs.org/docs/messages/blocking-prerender-current-time
+    at RootLayout (about://React/Server/file:///C:/Users/Usuario/Desktop/claude%2520code/arcade-vault/.next/dev/server/chunks/ssr/%255Broot-of-the-server%255D__0215-dfy7x-d1._.js?id=%255Bproject%255D/app/layout.tsx+%255Bapp-rsc%255D+(ecmascript)?28:58:290)
+    at resolveErrorDev (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2021:105)
+    at getOutlinedModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1560:28)
+    at parseModelString (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1680:50)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2626:66)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2629:61)
+    at reviveModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2708:112)
+    at parseModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2621:16)
+    at initializeModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1137:25)
+    at resolveModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:1035:43)
+    at processFullStringRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2577:371)
+    at processFullBinaryRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2499:9)
+    at processBinaryChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2606:221)
+    at progress (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2793:13) @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[  239309ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:3000/juegos/rocas/jugar:0

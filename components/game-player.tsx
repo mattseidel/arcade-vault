@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GameCanvas } from "@/components/games/game-canvas";
 import { Gamepad } from "@/components/gamepad";
 import { REAL_GAMES } from "@/components/games/registry";
@@ -12,7 +12,17 @@ import { SKINS, type SkinId } from "@/lib/games/types";
 const SKIN_KEY = "arcade-vault:skin";
 const LIVES = 3;
 type SaveState = { status: "idle" } | { status: "saving" } | SaveScoreResult;
-export function GamePlayer({ id, title }: { id: string; title: string }) {
+// null = invitado; username null = con sesión pero sin perfil
+export type PlayerSession = { username: string | null } | null;
+export function GamePlayer({
+  id,
+  title,
+  session,
+}: {
+  id: string;
+  title: string;
+  session: PlayerSession;
+}) {
   const [score, setScore] = useState(0);
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(false);
@@ -24,6 +34,9 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
   const [engineLevel, setEngineLevel] = useState(1);
   const [runKey, setRunKey] = useState(0);
   const [skin, setSkin] = useState<SkinId>("clasico");
+  // ponytail: una llamada a saveScore por partida; se rearma en restart
+  const savedRun = useRef(false);
+  const finalScore = useRef(0);
   const real = REAL_GAMES[id];
   useEffect(() => {
     try {
@@ -58,11 +71,13 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
     setOver(false);
     setSaved(false);
     setSave({ status: "idle" });
+    savedRun.current = false;
   };
+  const username = session?.username ?? null;
   const submit = async () => {
     setSave({ status: "saving" });
     try {
-      setSave(await saveScore(id, name, score));
+      setSave(await saveScore(id, finalScore.current));
     } catch {
       // ponytail: fallo de red; la Server Action ya devuelve sus errores como valor
       setSave({
@@ -70,6 +85,13 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
         message: "No se pudo guardar la puntuación.",
       });
     }
+  };
+  const finish = (final: number) => {
+    finalScore.current = final;
+    setOver(true);
+    if (!ranked || !username || final < 1 || savedRun.current) return;
+    savedRun.current = true;
+    void submit();
   };
   const toast =
     save.status !== "saved"
@@ -84,7 +106,7 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
           <div className="hud-stat">
             <div className="l">Jugador</div>
             <div className="v" style={{ color: "var(--ink)" }}>
-              {name}
+              {ranked ? (username ?? "INVITADO") : name}
             </div>
           </div>
           <div className="hud-stat">
@@ -113,7 +135,7 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
           >
             {paused ? "REANUDAR" : "PAUSA"}
           </button>
-          <button className="btn magenta" onClick={() => setOver(true)}>
+          <button className="btn magenta" onClick={() => finish(score)}>
             FIN
           </button>
           <Link href={`/juegos/${id}`} className="btn ghost">
@@ -171,7 +193,7 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
                 setLives(s.lives);
                 setEngineLevel(s.level);
               }}
-              onGameOver={() => setOver(true)}
+              onGameOver={finish}
             />
           ) : (
             <div className="game-arena">
@@ -219,7 +241,56 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
             <h2>FIN DEL JUEGO</h2>
             <div className="final-label">PUNTUACIÓN FINAL</div>
             <div className="final">{score.toLocaleString("es-ES")}</div>
-            {!saved && save.status !== "saved" ? (
+            {ranked ? (
+              <div style={{ marginTop: 18 }}>
+                {!username || save.status === "needs_login" ? (
+                  <Link
+                    href={session && !username ? "/login/username" : "/login"}
+                    className="btn yellow"
+                  >
+                    {session && !username
+                      ? "ELIGE UN NOMBRE PARA GUARDAR TU PUNTUACIÓN"
+                      : "INICIA SESIÓN PARA GUARDAR TU PUNTUACIÓN"}
+                  </Link>
+                ) : (
+                  <>
+                    <div className="final-label">JUGADOR · {username}</div>
+                    {save.status === "saving" && (
+                      <div
+                        className="toast-saved"
+                        style={{ "--n": 13 } as React.CSSProperties}
+                      >
+                        ▸ GUARDANDO…_
+                      </div>
+                    )}
+                    {save.status === "saved" && (
+                      <div
+                        className="toast-saved"
+                        style={
+                          { "--n": toast.length + 2 } as React.CSSProperties
+                        }
+                      >
+                        ▸ {toast}_
+                      </div>
+                    )}
+                    {save.status === "error" && (
+                      <>
+                        <div className="contact-error" role="alert">
+                          [ERROR] {save.message}
+                        </div>
+                        <button
+                          className="btn yellow"
+                          style={{ marginTop: 10 }}
+                          onClick={submit}
+                        >
+                          REINTENTAR
+                        </button>
+                      </>
+                    )}
+                  </>
+                )}
+              </div>
+            ) : !saved ? (
               <>
                 <div className="input-row">
                   <input
@@ -231,28 +302,17 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
                     aria-label="Tus iniciales"
                   />
                   {/* ponytail: los juegos simulados no persisten nada, solo los RANKED_GAMES guardan */}
-                  <button
-                    className="btn yellow"
-                    disabled={save.status === "saving"}
-                    onClick={ranked ? submit : () => setSaved(true)}
-                  >
-                    {save.status === "saving"
-                      ? "GUARDANDO…"
-                      : "GUARDAR PUNTUACIÓN"}
+                  <button className="btn yellow" onClick={() => setSaved(true)}>
+                    GUARDAR PUNTUACIÓN
                   </button>
                 </div>
-                {save.status === "error" && (
-                  <div className="contact-error" role="alert">
-                    [ERROR] {save.message} Inténtalo de nuevo.
-                  </div>
-                )}
               </>
             ) : (
               <div
                 className="toast-saved"
-                style={{ "--n": toast.length + 2 } as React.CSSProperties}
+                style={{ "--n": 22 } as React.CSSProperties}
               >
-                ▸ {toast}_
+                ▸ PUNTUACIÓN GUARDADA_
               </div>
             )}
             <div className="actions">
