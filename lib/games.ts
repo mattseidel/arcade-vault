@@ -100,6 +100,17 @@ export const GAMES: Game[] = [
     best: 24,
     plays: "4.2K",
   },
+  {
+    id: "salto-neon",
+    title: "SALTO NEÓN",
+    short: "Un botón. Una pista infinita. Cero perdón.",
+    long: "Un cubo de luz corre sin freno por una autopista de neón. Pulsa para saltar pinchos y bloques que surgen de la oscuridad. Cuanto más lejos llegas, más rápido corre el mundo.",
+    cat: "ARCADE",
+    cover: "cover-salto",
+    color: "magenta",
+    best: 12650,
+    plays: "3.7K",
+  },
 ];
 // juegos que guardan puntuación en Supabase (debe coincidir con submit_score)
 export const RANKED_GAMES = [
@@ -107,6 +118,7 @@ export const RANKED_GAMES = [
   "caida",
   "bloque-buster",
   "serpentina",
+  "salto-neon",
 ] as const;
 export const CATS: ("TODOS" | Category)[] = [
   "TODOS",

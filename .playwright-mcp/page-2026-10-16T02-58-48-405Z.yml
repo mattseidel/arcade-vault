@@ -1,0 +1,53 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - navigation [ref=f1e3]:
+      - link "ARCADE VAULT" [ref=f1e4] [cursor=pointer]:
+        - /url: /
+      - button "Menú" [ref=f1e60] [cursor=pointer]: ≡
+    - complementary [ref=f1e16]:
+      - generic [ref=f1e17]: MENÚ
+      - link "Inicio" [ref=f1e18] [cursor=pointer]:
+        - /url: /
+      - link "Biblioteca" [ref=f1e19] [cursor=pointer]:
+        - /url: /biblioteca
+      - link "Salón de la Fama" [ref=f1e20] [cursor=pointer]:
+        - /url: /salon
+      - link "Acerca de" [ref=f1e21] [cursor=pointer]:
+        - /url: /about
+      - link "Iniciar Sesión" [ref=f1e22] [cursor=pointer]:
+        - /url: /login
+      - generic [ref=f1e24]: CRÉDITOS · 03
+    - main [ref=f1e25]:
+      - generic [ref=f1e26]:
+        - generic [ref=f1e27]:
+          - generic [ref=f1e28]:
+            - generic [ref=f1e29]:
+              - generic [ref=f1e30]: Jugador
+              - generic [ref=f1e31]: QA_SN2 W
+            - generic [ref=f1e32]:
+              - generic [ref=f1e33]: Puntuación
+              - generic [ref=f1e34]: "122"
+            - generic [ref=f1e35]:
+              - generic [ref=f1e36]: Nivel
+              - generic [ref=f1e37]: "01"
+          - generic [ref=f1e38]:
+            - button "PAUSA" [ref=f1e39] [cursor=pointer]
+            - button "FIN" [ref=f1e40] [cursor=pointer]
+            - link "SALIR" [ref=f1e41] [cursor=pointer]:
+              - /url: /juegos/salto-neon
+        - generic [ref=f1e45]:
+          - generic [ref=f1e46]: SEÑAL OK
+          - generic [ref=f1e47]: SALTO NEÓN · CRT-83 · 60 HZ
+          - generic [ref=f1e48]: CARGA · 1MB
+        - generic [ref=f1e62]:
+          - heading "FIN DEL JUEGO" [level=2] [ref=f1e63]
+          - generic [ref=f1e64]: PUNTUACIÓN FINAL
+          - generic [ref=f1e65]: "122"
+          - generic [ref=f1e72]: ▸ NUEVO RÉCORD PERSONAL_
+          - generic [ref=f1e69]:
+            - button "JUGAR DE NUEVO" [ref=f1e70] [cursor=pointer]
+            - link "VOLVER AL VAULT" [ref=f1e71] [cursor=pointer]:
+              - /url: /biblioteca
+    - contentinfo [ref=f1e49]: © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=f1e55] [cursor=pointer]
+  - alert [ref=f1e59]

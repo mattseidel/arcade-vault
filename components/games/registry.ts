@@ -6,6 +6,8 @@ import { createBloqueBuster } from "@/lib/games/bloqueBuster/engine";
 import { H as BH, W as BW } from "@/lib/games/bloqueBuster/constants";
 import { createSerpentina } from "@/lib/games/serpentina/engine";
 import { H as SH, W as SW } from "@/lib/games/serpentina/constants";
+import { createSaltoNeon } from "@/lib/games/saltoNeon/engine";
+import { H as NH, W as NW } from "@/lib/games/saltoNeon/constants";
 import type { CreateGame } from "@/lib/games/types";
 export type RealGame = {
   create: CreateGame;
@@ -26,6 +28,12 @@ export const REAL_GAMES: Record<string, RealGame> = {
     create: createSerpentina,
     width: SW,
     height: SH,
+    lives: false,
+  },
+  "salto-neon": {
+    create: createSaltoNeon,
+    width: NW,
+    height: NH,
     lives: false,
   },
   caida: {
