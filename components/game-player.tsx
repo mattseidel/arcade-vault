@@ -6,6 +6,8 @@ import { REAL_GAMES } from "@/components/games/registry";
 import { RANKED_GAMES } from "@/lib/games";
 import { saveScore } from "@/app/juegos/[id]/jugar/actions";
 import type { SaveScoreResult } from "@/lib/scores";
+import { SKINS, type SkinId } from "@/lib/games/types";
+const SKIN_KEY = "arcade-vault:skin";
 const LIVES = 3;
 type SaveState = { status: "idle" } | { status: "saving" } | SaveScoreResult;
 export function GamePlayer({ id, title }: { id: string; title: string }) {
@@ -19,7 +21,21 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
   const [lives, setLives] = useState(LIVES);
   const [engineLevel, setEngineLevel] = useState(1);
   const [runKey, setRunKey] = useState(0);
+  const [skin, setSkin] = useState<SkinId>("clasico");
   const real = REAL_GAMES[id];
+  useEffect(() => {
+    try {
+      const v = localStorage.getItem(SKIN_KEY) as SkinId | null;
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- hidratar desde localStorage tras el mount
+      if (v && SKINS.includes(v)) setSkin(v);
+    } catch {}
+  }, []);
+  const pickSkin = (s: SkinId) => {
+    setSkin(s);
+    try {
+      localStorage.setItem(SKIN_KEY, s);
+    } catch {}
+  };
   const ranked = (RANKED_GAMES as readonly string[]).includes(id);
   // ponytail: en los juegos simulados el nivel se deriva de la puntuación
   const level = real ? engineLevel : 1 + Math.floor(score / 2500);
@@ -103,6 +119,42 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
           </Link>
         </div>
       </div>
+      {real?.skins && (
+        <div
+          role="group"
+          aria-label="Skin"
+          style={{
+            display: "flex",
+            gap: 8,
+            alignItems: "center",
+            margin: "0 0 12px",
+          }}
+        >
+          <span
+            className="mono"
+            style={{
+              fontSize: 11,
+              letterSpacing: "0.16em",
+              color: "var(--ink-dim)",
+            }}
+          >
+            SKIN
+          </span>
+          {SKINS.map((s) => (
+            <button
+              key={s}
+              className={`btn ${s === skin ? "yellow" : "ghost"}`}
+              aria-pressed={s === skin}
+              onClick={(e) => {
+                e.currentTarget.blur();
+                pickSkin(s);
+              }}
+            >
+              {s.toUpperCase()}
+            </button>
+          ))}
+        </div>
+      )}
       <div className="crt">
         <div className="crt-screen">
           {real ? (
@@ -110,6 +162,7 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
               game={real}
               paused={paused || over}
               runKey={runKey}
+              skin={skin}
               onStats={(s) => {
                 setScore(s.score);
                 setLives(s.lives);

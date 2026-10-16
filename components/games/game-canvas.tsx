@@ -1,16 +1,18 @@
 "use client";
 import { useEffect, useRef } from "react";
-import type { GameCallbacks, GameEngine } from "@/lib/games/types";
+import type { GameCallbacks, GameEngine, SkinId } from "@/lib/games/types";
 import type { RealGame } from "./registry";
 type Props = GameCallbacks & {
   game: RealGame;
   paused: boolean;
   runKey: number; // al cambiar, se reinicia la partida
+  skin: SkinId; // al cambiar, se aplica con engine.setSkin sin reiniciar
 };
 export function GameCanvas({
   game,
   paused,
   runKey,
+  skin,
   onStats,
   onGameOver,
 }: Props) {
@@ -33,6 +35,7 @@ export function GameCanvas({
         onGameOver: (score) => cbRef.current.onGameOver(score),
       },
       auxRef.current,
+      skin,
     );
     engine.start();
     engineRef.current = engine;
@@ -40,7 +43,12 @@ export function GameCanvas({
       engine.destroy();
       engineRef.current = null;
     };
+    // ponytail: skin inicial por closure; los cambios van por setSkin (abajo)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game]);
+  useEffect(() => {
+    engineRef.current?.setSkin?.(skin);
+  }, [skin]);
   useEffect(() => {
     if (paused) engineRef.current?.pause();
     else engineRef.current?.resume();

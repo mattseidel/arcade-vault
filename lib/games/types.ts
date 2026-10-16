@@ -8,11 +8,16 @@ export type GameEngine = {
   pause(): void;
   resume(): void;
   restart(): void; // nueva partida desde cero
+  setSkin?(skin: SkinId): void; // cambia la skin en caliente, sin reiniciar
   destroy(): void; // detiene el loop y quita los listeners
 };
-// aux: canvas opcional de apoyo (p. ej. "siguiente pieza")
+// Skins visuales: única lista permitida (solo afectan al dibujo)
+export const SKINS = ["clasico", "neon", "retro"] as const;
+export type SkinId = (typeof SKINS)[number];
+// aux: canvas opcional de apoyo (p. ej. "siguiente pieza"); skin por defecto "clasico"
 export type CreateGame = (
   canvas: HTMLCanvasElement,
   cb: GameCallbacks,
   aux?: HTMLCanvasElement | null,
+  skin?: SkinId,
 ) => GameEngine;

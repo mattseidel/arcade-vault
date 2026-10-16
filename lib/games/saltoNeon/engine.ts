@@ -33,7 +33,8 @@ import {
   W,
 } from "./constants";
 import type { Obstacle, ObstacleKind, Orb } from "./types";
-import type { GameCallbacks, GameEngine } from "../types";
+import type { GameCallbacks, GameEngine, SkinId } from "../types";
+import { PALETTES } from "./skins";
 type Particle = { x: number; y: number; vx: number; vy: number };
 type Floater = { x: number; y: number; t: number };
 type Building = { x: number; w: number; h: number };
@@ -44,7 +45,10 @@ const BG_PERIOD = W + 200;
 export function createSaltoNeon(
   canvas: HTMLCanvasElement,
   cb: GameCallbacks,
+  _aux?: HTMLCanvasElement | null,
+  skin: SkinId = "clasico",
 ): GameEngine {
+  let pal = PALETTES[skin];
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("Canvas 2D no disponible");
   let y = GROUND_TOP;
@@ -225,47 +229,64 @@ export function createSaltoNeon(
   // ── Dibujo ──────────────────────────────────────────────────────────────────
   function draw() {
     if (!ctx) return;
-    ctx.fillStyle = "#05030f";
+    const { glow, pixel } = pal;
+    ctx.fillStyle = pal.bg;
     ctx.fillRect(0, 0, W, H);
     // parallax: edificios al 25 % de la velocidad de la pista
     const off = (dist * PARALLAX_FACTOR) % BG_PERIOD;
-    ctx.fillStyle = "rgba(255,43,214,0.25)";
+    ctx.fillStyle = pal.building;
+    if (pal.buildingLine) {
+      ctx.strokeStyle = pal.buildingLine;
+      ctx.shadowColor = pal.buildingLine;
+      ctx.shadowBlur = glow / 2;
+      ctx.lineWidth = 1.5;
+    }
     for (const b of buildings) {
       let bx = b.x - off;
       if (bx + b.w < 0) bx += BG_PERIOD;
-      ctx.fillRect(bx, GROUND_Y - b.h, b.w, b.h);
+      if (pixel) bx = Math.round(bx / 4) * 4;
+      if (pal.buildingLine) ctx.strokeRect(bx, GROUND_Y - b.h, b.w, b.h);
+      else ctx.fillRect(bx, GROUND_Y - b.h, b.w, b.h);
     }
     // suelo con rejilla que se desplaza con la pista
-    ctx.shadowColor = "#ff2bd6";
-    ctx.shadowBlur = 12;
-    ctx.strokeStyle = "#ff2bd6";
-    ctx.lineWidth = 2;
+    ctx.shadowColor = pal.ground;
+    ctx.shadowBlur = glow;
+    ctx.strokeStyle = pal.ground;
+    ctx.lineWidth = pixel ? 4 : 2;
     ctx.beginPath();
     ctx.moveTo(0, GROUND_Y);
     ctx.lineTo(W, GROUND_Y);
     ctx.stroke();
     ctx.shadowBlur = 0;
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "rgba(255,43,214,0.3)";
+    ctx.lineWidth = pixel ? 2 : 1;
+    ctx.strokeStyle = pal.grid;
     ctx.beginPath();
     for (let x = -(dist % 40); x < W; x += 40) {
-      ctx.moveTo(x, GROUND_Y);
-      ctx.lineTo(x - 30, H);
+      const gx = pixel ? Math.round(x) : x;
+      ctx.moveTo(gx, GROUND_Y);
+      ctx.lineTo(gx - 30, H);
     }
     ctx.stroke();
     // obstáculos
-    ctx.shadowColor = "#ff2bd6";
-    ctx.shadowBlur = 12;
-    ctx.fillStyle = "#ff2bd6";
+    ctx.shadowColor = pal.ground;
+    ctx.shadowBlur = glow;
+    ctx.fillStyle = pal.ground;
     for (const o of obstacles) {
+      const ox = pixel ? Math.round(o.x) : o.x;
       if (o.kind === "beam") {
-        ctx.fillRect(o.x, BEAM.top, o.w, BEAM.bottom - BEAM.top);
+        ctx.fillRect(ox, BEAM.top, o.w, BEAM.bottom - BEAM.top);
       } else if (o.kind === "block") {
-        ctx.fillRect(o.x, GROUND_Y - 60, o.w, 60);
+        ctx.fillRect(ox, GROUND_Y - 60, o.w, 60);
       } else {
         const n = o.kind === "doubleSpike" ? 2 : 1;
         for (let i = 0; i < n; i++) {
-          const sx = o.x + i * 30;
+          const sx = ox + i * 30;
+          if (pixel) {
+            // pincho escalonado: filas de 5 px que se estrechan
+            for (let r = 0; r < 8; r++)
+              ctx.fillRect(sx + r * 2, GROUND_Y - 5 * (r + 1), 30 - r * 4, 5);
+            continue;
+          }
           ctx.beginPath();
           ctx.moveTo(sx, GROUND_Y);
           ctx.lineTo(sx + 15, GROUND_Y - 40);
@@ -276,18 +297,29 @@ export function createSaltoNeon(
       }
     }
     // orbes
-    ctx.shadowColor = "#ffe600";
-    ctx.fillStyle = "#ffe600";
+    ctx.shadowColor = pal.orb;
+    ctx.fillStyle = pal.orb;
     for (const o of orbs) {
+      if (pixel) {
+        ctx.fillRect(
+          Math.round(o.x) - ORB_R,
+          ORB_Y - ORB_R,
+          ORB_R * 2,
+          ORB_R * 2,
+        );
+        continue;
+      }
       ctx.beginPath();
       ctx.arc(o.x, ORB_Y, ORB_R, 0, Math.PI * 2);
       ctx.fill();
     }
     // cubo (gira 180° por salto) o explosión
-    ctx.shadowColor = "#00f5ff";
-    ctx.fillStyle = "#00f5ff";
+    ctx.shadowColor = pal.player;
+    ctx.fillStyle = pal.player;
     if (!dying) {
-      const ang = y < GROUND_TOP ? Math.min(1, airT / 0.75) * Math.PI : 0;
+      let ang = y < GROUND_TOP ? Math.min(1, airT / 0.75) * Math.PI : 0;
+      // retro: giro a saltos de 90°
+      if (pixel) ang = Math.round(ang / (Math.PI / 2)) * (Math.PI / 2);
       ctx.save();
       ctx.translate(PLAYER_X + PLAYER_SIZE / 2, y + PLAYER_SIZE / 2);
       ctx.rotate(ang);
@@ -297,9 +329,27 @@ export function createSaltoNeon(
         PLAYER_SIZE,
         PLAYER_SIZE,
       );
+      if (pal.buildingLine) {
+        // neon: núcleo oscuro para que el cubo parezca un marco de luz
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = pal.bg;
+        ctx.fillRect(
+          -PLAYER_SIZE / 2 + 6,
+          -PLAYER_SIZE / 2 + 6,
+          PLAYER_SIZE - 12,
+          PLAYER_SIZE - 12,
+        );
+      } else if (pixel) {
+        ctx.fillStyle = pal.bg;
+        ctx.fillRect(-8, -8, 16, 16);
+      }
       ctx.restore();
     } else {
-      ctx.globalAlpha = Math.max(0, 1 - deathT / DEATH_MS);
+      ctx.globalAlpha = pixel
+        ? deathT < DEATH_MS / 2
+          ? 1
+          : 0
+        : Math.max(0, 1 - deathT / DEATH_MS);
       for (const p of particles) ctx.fillRect(p.x - 3, p.y - 3, 6, 6);
       ctx.globalAlpha = 1;
     }
@@ -308,14 +358,14 @@ export function createSaltoNeon(
     ctx.textAlign = "center";
     ctx.font = "bold 20px monospace";
     for (const f of floaters) {
-      ctx.globalAlpha = 1 - f.t / ORB_TEXT_MS;
-      ctx.fillStyle = "#ffe600";
+      ctx.globalAlpha = pixel ? 1 : 1 - f.t / ORB_TEXT_MS;
+      ctx.fillStyle = pal.orb;
       ctx.fillText(`+${ORB_POINTS}`, f.x, f.y - 30 * (f.t / ORB_TEXT_MS));
     }
     if (levelTextT > 0) {
-      ctx.globalAlpha = Math.min(1, levelTextT / 300);
+      ctx.globalAlpha = pixel ? 1 : Math.min(1, levelTextT / 300);
       ctx.font = "bold 36px monospace";
-      ctx.fillStyle = "#00f5ff";
+      ctx.fillStyle = pal.text;
       ctx.fillText(`NIVEL ${lvl}`, W / 2, 200);
     }
     ctx.globalAlpha = 1;
@@ -361,6 +411,10 @@ export function createSaltoNeon(
     restart() {
       initGame();
       lastTime = null;
+    },
+    setSkin(s) {
+      pal = PALETTES[s];
+      draw(); // repinta ya, también en pausa
     },
     destroy() {
       cancelAnimationFrame(rafId);

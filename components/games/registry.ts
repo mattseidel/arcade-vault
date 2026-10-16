@@ -14,6 +14,7 @@ export type RealGame = {
   width: number;
   height: number;
   lives: boolean; // false: el HUD oculta las vidas
+  skins?: boolean; // el motor soporta SkinId (clasico/neon/retro)
   aux?: { width: number; height: number }; // canvas de apoyo (siguiente pieza)
 };
 export const REAL_GAMES: Record<string, RealGame> = {
@@ -35,6 +36,7 @@ export const REAL_GAMES: Record<string, RealGame> = {
     width: NW,
     height: NH,
     lives: false,
+    skins: true,
   },
   caida: {
     create: createCaida,
