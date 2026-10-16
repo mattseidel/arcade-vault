@@ -62,10 +62,19 @@ export async function signUp(
   const supabase = await client();
   const { data, error } = await supabase.auth.signUp({ email: mail, password });
   if (error?.code === "email_address_invalid") return err("Correo no válido.");
-  if (error?.code === "weak_password") return err("Contraseña demasiado débil.");
+  if (error?.code === "weak_password")
+    return err("Contraseña demasiado débil.");
   // identities vacío = el correo ya existía (Supabase no lo delata con error)
-  if (error || !data.user || data.user.identities?.length === 0)
-    return err("No se pudo crear la cuenta. Revisa los datos o inicia sesión.");
+  if (!error && data.user?.identities?.length === 0)
+    return err(
+      "Ese correo ya está registrado. Inicia sesión o recupera tu contraseña.",
+    );
+  if (error || !data.user) {
+    console.error("signUp:", error?.code, error?.message);
+    return err(
+      `No se pudo crear la cuenta (${error?.code ?? "sin respuesta"}).`,
+    );
+  }
   if (!data.session) return err("Revisa tu correo para confirmar tu cuenta.");
   // Carrera: otro usuario pudo tomar el username entre la comprobación y el insert
   const claimed = await claimUsername(name);
