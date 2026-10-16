@@ -3,19 +3,18 @@ import { notFound } from "next/navigation";
 import { GamePlayer } from "@/components/game-player";
 import { GAMES } from "@/lib/games";
 import { cookies } from "next/headers";
+import { connection } from "next/server";
 import { createClient } from "@/utils/supabase/server";
-
 export function generateStaticParams() {
   return GAMES.map((g) => ({ id: g.id }));
 }
-
 async function Player({
   params,
 }: Pick<PageProps<"/juegos/[id]/jugar">, "params">) {
   const { id } = await params;
   const game = GAMES.find((g) => g.id === id);
   if (!game) notFound();
-
+  await connection(); // supabase.auth usa Date.now(): requiere request-time real
   const supabase = createClient(await cookies());
   const {
     data: { user },
@@ -29,10 +28,8 @@ async function Player({
       .maybeSingle();
     session = { username: profile?.username ?? null };
   }
-
   return <GamePlayer id={game.id} title={game.title} session={session} />;
 }
-
 export default function Jugar({ params }: PageProps<"/juegos/[id]/jugar">) {
   return (
     <Suspense fallback={null}>
