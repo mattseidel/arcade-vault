@@ -111,6 +111,17 @@ export const GAMES: Game[] = [
     best: 12650,
     plays: "3.7K",
   },
+  {
+    id: "frogger",
+    title: "FROGGER",
+    short: "Cruza la carretera y el río sin convertirte en papilla.",
+    long: "Guía a tu rana a través de una carretera repleta de coches y un río de troncos y tortugas flotantes. Llena las cinco bocas del otro lado para completar la ronda; cada nivel acelera el tráfico y acorta el tiempo. Tres vidas y mucho asfalto por delante.",
+    cat: "ARCADE",
+    cover: "cover-frogger",
+    color: "green", // ponytail: la spec dice "lime", GameColor no lo tiene; green es el más cercano
+    best: 0,
+    plays: "0",
+  },
 ];
 // juegos que guardan puntuación en Supabase (debe coincidir con submit_score)
 export const RANKED_GAMES = [
@@ -119,6 +130,7 @@ export const RANKED_GAMES = [
   "bloque-buster",
   "serpentina",
   "salto-neon",
+  "frogger",
 ] as const;
 export const CATS: ("TODOS" | Category)[] = [
   "TODOS",

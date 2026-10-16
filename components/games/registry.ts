@@ -8,6 +8,8 @@ import { createSerpentina } from "@/lib/games/serpentina/engine";
 import { H as SH, W as SW } from "@/lib/games/serpentina/constants";
 import { createSaltoNeon } from "@/lib/games/saltoNeon/engine";
 import { H as NH, W as NW } from "@/lib/games/saltoNeon/constants";
+import { createFrogger } from "@/lib/games/frogger/engine";
+import { H as FH, W as FW } from "@/lib/games/frogger/constants";
 import type { PadLayout } from "@/lib/games/pads";
 import type { CreateGame } from "@/lib/games/types";
 export type RealGame = {
@@ -71,6 +73,19 @@ export const REAL_GAMES: Record<string, RealGame> = {
     lives: false,
     skins: true,
     pad: [{ code: "Space", label: "SALTAR", area: "action" }],
+  },
+  frogger: {
+    create: createFrogger,
+    width: FW,
+    height: FH,
+    lives: true,
+    skins: true,
+    pad: [
+      { code: "ArrowUp", label: "ARRIBA", area: "dpad", pos: "up" },
+      { code: "ArrowLeft", label: "IZQUIERDA", area: "dpad", pos: "left" },
+      { code: "ArrowRight", label: "DERECHA", area: "dpad", pos: "right" },
+      { code: "ArrowDown", label: "ABAJO", area: "dpad", pos: "down" },
+    ],
   },
   caida: {
     create: createCaida,
