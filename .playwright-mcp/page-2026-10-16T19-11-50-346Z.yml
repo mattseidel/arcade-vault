@@ -1,0 +1,68 @@
+- generic [active] [ref=f27e1]:
+  - generic [ref=f27e2]:
+    - navigation [ref=f27e3]:
+      - link "ARCADE VAULT" [ref=f27e4] [cursor=pointer]:
+        - /url: /
+      - button "Menú" [ref=f27e7] [cursor=pointer]: ≡
+    - complementary [ref=f27e8]:
+      - generic [ref=f27e9]: MENÚ
+      - link "Inicio" [ref=f27e10] [cursor=pointer]:
+        - /url: /
+      - link "Biblioteca" [ref=f27e11] [cursor=pointer]:
+        - /url: /biblioteca
+      - link "Salón de la Fama" [ref=f27e12] [cursor=pointer]:
+        - /url: /salon
+      - link "Acerca de" [ref=f27e13] [cursor=pointer]:
+        - /url: /about
+      - generic [ref=f27e14]: MATTSEIDEL
+      - button "Salir" [ref=f27e16] [cursor=pointer]
+      - generic [ref=f27e18]: CRÉDITOS · 03
+    - main [ref=f27e19]:
+      - generic [ref=f27e20]:
+        - generic [ref=f27e21]:
+          - heading "SALÓN DE LA FAMA" [level=1] [ref=f27e22]
+          - paragraph [ref=f27e23]: LOS NOMBRES QUE NUNCA SE BORRAN DE LA PANTALLA
+        - generic [ref=f27e24]:
+          - button "BLOQUE BUSTER" [ref=f27e25] [cursor=pointer]
+          - button "CAÍDA" [ref=f27e26] [cursor=pointer]
+          - button "SERPENTINA" [ref=f27e27] [cursor=pointer]
+          - button "GLOTÓN" [ref=f27e28] [cursor=pointer]
+          - button "INVASORES" [ref=f27e29] [cursor=pointer]
+          - button "ROCAS" [ref=f27e30] [cursor=pointer]
+          - button "RANARIA" [ref=f27e31] [cursor=pointer]
+          - button "DUELO PIXEL" [ref=f27e32] [cursor=pointer]
+          - button "SALTO NEÓN" [ref=f27e33] [cursor=pointer]
+          - button "FROGGER" [ref=f27e34] [cursor=pointer]
+        - generic [ref=f27e35]:
+          - generic [ref=f27e36]:
+            - generic [ref=f27e37]: "02"
+            - generic [ref=f27e38]: INVITADO
+            - generic [ref=f27e39]: "90"
+            - generic [ref=f27e40]: 15/10/2026
+          - generic [ref=f27e41]:
+            - generic [ref=f27e42]: CAMPEÓN
+            - generic [ref=f27e43]: "01"
+            - generic [ref=f27e44]: MATTSEIDEL
+            - generic [ref=f27e45]: "370"
+            - generic [ref=f27e46]: 16/10/2026
+        - generic [ref=f27e47]:
+          - generic [ref=f27e48]:
+            - generic [ref=f27e49]: RANGO
+            - generic [ref=f27e50]: JUGADOR
+            - generic [ref=f27e51]: PUNTUACIÓN
+            - generic [ref=f27e52]: FECHA
+          - generic [ref=f27e53]:
+            - generic [ref=f27e54]: "#01"
+            - generic [ref=f27e55]: MATTSEIDEL
+            - generic [ref=f27e56]: "370"
+            - generic [ref=f27e57]: 16/10/2026
+          - generic [ref=f27e58]:
+            - generic [ref=f27e59]: "#02"
+            - generic [ref=f27e60]: INVITADO
+            - generic [ref=f27e61]: "90"
+            - generic [ref=f27e62]: 15/10/2026
+        - link "VOLVER A LA BIBLIOTECA" [ref=f27e64] [cursor=pointer]:
+          - /url: /biblioteca
+    - contentinfo [ref=f27e65]: © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=f27e71] [cursor=pointer]
+  - alert [ref=f27e75]

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Press_Start_2P, JetBrains_Mono, Courier_Prime } from "next/font/google";
+import { Suspense } from "react";
 import { Nav } from "@/components/nav";
+import { NavSession } from "@/components/navSession";
 import "./globals.css";
 
 const pixel = Press_Start_2P({
@@ -36,7 +38,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div className="av-bg" />
         <div className="av-noise" />
         <div className="av-root">
-          <Nav />
+          {/* cookies() es dinámico con cacheComponents: la sesión se lee dentro de Suspense */}
+          <Suspense fallback={<Nav />}>
+            <NavSession />
+          </Suspense>
           <main className="av-main">{children}</main>
           <footer className="av-footer">
             © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0

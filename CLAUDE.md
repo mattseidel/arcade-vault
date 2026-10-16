@@ -4,14 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Arcade Vault: online platform to play games and compete for the highest score. UI is in Spanish (README too). Pages exist for home, about/contacto, biblioteca, juegos, salón de la fama and login; five real games are implemented (Asteroids `rocas`, `caida`, `bloque-buster`, `serpentina`, `salto-neon`); the rest of the catalog is decorative.
+Arcade Vault: online platform to play games and compete for the highest score. UI is in Spanish (README too). Pages exist for home, about/contacto, biblioteca, juegos, salón de la fama and login; six real games are implemented (Asteroids `rocas`, `caida`, `bloque-buster`, `serpentina`, `salto-neon`, `frogger`); the rest of the catalog is decorative.
 
-The project follows Spec Driven Design (`/spec` and `/spec-impl` workflow; specs live in `specs/NN-*.md` and mark their own `Status`, `Depends on` and out-of-scope items — read the relevant one before changing a feature) using skills from `Klerith/fernando-skills` (`npx skills@latest add Klerith/fernando-skills`).
+The project follows Spec Driven Design (`/spec` and `/spec-impl` workflow; specs live in `specs/NN-*.md`, per-feature folders like `specs/frogger/`, and `specs/game-jam/<game-id>/` for jam games (backlog in `specs/game-suggestions-todo.md`); each marks their own `Status`, `Depends on` and out-of-scope items — read the relevant one before changing a feature) using skills from `Klerith/fernando-skills` (`npx skills@latest add Klerith/fernando-skills`).
 
 ## Skills
+
 usa siempre el /frontend-design para diseñar la interfaz de usuario
 
+Project skills in `.claude/skills/`: `arcade-game` (add/port a game + ranking), `spec-impl-game` (like `/spec-impl` for game specs; ends by launching `skin-dessigner` then `game-porter`), `supabase`, `supabase-postgres-best-practices`.
+
 ## Playwright
+
 Guarda todos los screenshots de Playwright en `.playwright-screenshots/` (usa ese directorio en el `filename` de `browser_take_screenshot`).
 
 ## Commands
@@ -32,12 +36,13 @@ No test runner is configured yet.
 
 ## Architecture
 
-- **Catalog**: `lib/games.ts` (`GAMES`) is the static game list; routes are `app/juegos/[id]` (detail) and `app/juegos/[id]/jugar` (player). `components/game-player.tsx` is the shared CRT-framed player (HUD, pause, game-over modal); games outside `REAL_GAMES` (all but the five real ones) still run a decorative simulation.
+- **Catalog**: `lib/games.ts` (`GAMES`) is the static game list; routes are `app/juegos/[id]` (detail) and `app/juegos/[id]/jugar` (player). `components/game-player.tsx` is the shared CRT-framed player (HUD, pause, game-over modal); games outside `REAL_GAMES` (all but the six real ones) still run a decorative simulation.
 - **Game registry**: `components/games/registry.ts` (`REAL_GAMES`: engine `create`, logical size, `lives`, optional `aux` canvas, optional `skins` flag, `pad` = touch gamepad buttons mapped to the key codes the engine reads, rendered by `components/gamepad.tsx`; layouts in `lib/games/pads.ts`) drives `GamePlayer`/`GameCanvas`; `RANKED_GAMES` in `lib/games.ts` lists games that save scores (must match `submit_score`). Engine contract in `lib/games/types.ts`. Adding a game = engine in `lib/games/<name>/` + registry entry + `RANKED_GAMES` entry + a `supabase/migrations/` file extending `submit_score` (see `*allow*Scores.sql`). Use the `arcade-game` skill.
-- **Asteroids**: `lib/games/asteroids/` is a DOM-free engine (`createAsteroids(canvas, callbacks)` → `start/pause/resume/restart/destroy`) reporting through `onStats` / `onGameOver(finalScore)`. `components/games/asteroidsCanvas.tsx` mounts it; `GamePlayer` owns all HUD/overlays. New games should follow this split. Reference sources to port are in `references/started-games/`; UI mockups in `references/templates/`.
-- **Scores**: table `scores` (PK `game_id, player_name`; migration in `supabase/migrations/`) holds each player's best score per game; writes go only through the `submit_score` RPC, called by server action `app/juegos/[id]/jugar/actions.ts` (`saveScore`, validates name `^[A-Z0-9_ ]{1,10}$` and score, only `RANKED_GAMES`: the five real games). `lib/scores-db.ts` (`getTopScores`) feeds `/salon` for those; other games' tabs still use the deterministic fake `seededScores` in `lib/scores.ts` (`components/hall-of-fame.tsx`).
-- **Skins**: every real game has exactly three skins — `clasico` (default), `neon`, `retro` — in `lib/games/<name>/skins.ts`. Project agents in `.claude/agents/` (`skin-dessigner`, `game-porter` for mobile/gamepad audit, `game-planner`, `game-jam`) cover these chores.
+- **Asteroids**: `lib/games/asteroids/` is a DOM-free engine (`createAsteroids(canvas, callbacks)` → `start/pause/resume/restart/destroy`) reporting through `onStats` / `onGameOver(finalScore)`. `components/games/game-canvas.tsx` mounts it (generic, via the registry); `GamePlayer` owns all HUD/overlays. New games should follow this split. Reference sources to port are in `references/started-games/`; UI mockups in `references/templates/`.
+- **Scores**: table `scores` (PK `game_id, player_name`; migration in `supabase/migrations/`) holds each player's best score per game; writes go only through the `submit_score` RPC, called by server action `app/juegos/[id]/jugar/actions.ts` (`saveScore`, validates name `^[A-Z0-9_ ]{1,10}$` and score, only `RANKED_GAMES`: the six real games). `lib/scores-db.ts` (`getTopScores`) feeds `/salon` for those; other games' tabs still use the deterministic fake `seededScores` in `lib/scores.ts` (`components/hall-of-fame.tsx`).
+- **Skins**: every real game has exactly three skins — `clasico` (default), `neon`, `retro` — in `lib/games/<name>/skins.ts`.
+- **Agents**: `.claude/agents/skinDessigner.md`, `gamePorter.md`, `gamePlanner.md`, `gameJam.md`.
 - **Naming**: new files/folders in camelCase (e.g. `bloqueBuster`, `saltoNeon`), though some older components are kebab-case.
-- **Supabase**: `utils/supabase/client.ts` (browser) and `utils/supabase/server.ts` (takes the `cookies()` store) wrap `@supabase/ssr`. Env vars: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (see `.env.example`; `.env.local` is git-ignored). The Supabase MCP server is configured in `.mcp.json`; use it for schema/migrations. Supabase skills are in `.claude/skills/`.
+- **Supabase**: `utils/supabase/client.ts` (browser) and `utils/supabase/server.ts` (takes the `cookies()` store) wrap `@supabase/ssr`. Env vars: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (see `.env.example`; `.env.local` is git-ignored). The Supabase MCP server is configured in `.mcp.json`; use it for schema/migrations.
 - **Contact form**: `components/about/contact-form.tsx` → server action `app/about/actions.ts` → Resend (`RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`).
 - **Hooks** (`.claude/settings.json`): after every Write/Edit, `.claude/hooks/format.mjs` runs Prettier and ESLint `--fix` (lint errors are fed back to you), and a sound plays on Stop.

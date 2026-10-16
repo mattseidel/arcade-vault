@@ -1,0 +1,59 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - link "ARCADE VAULT" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e7]:
+        - link "Inicio" [ref=e8] [cursor=pointer]:
+          - /url: /
+        - link "Biblioteca" [ref=e9] [cursor=pointer]:
+          - /url: /biblioteca
+        - link "Salón de la Fama" [ref=e10] [cursor=pointer]:
+          - /url: /salon
+        - link "Acerca de" [ref=e11] [cursor=pointer]:
+          - /url: /about
+      - generic [ref=e12]: CRÉDITOS · 03
+      - link "Iniciar Sesión" [ref=e15] [cursor=pointer]:
+        - /url: /login
+    - complementary [ref=e16]:
+      - generic [ref=e17]: MENÚ
+      - link "Inicio" [ref=e18] [cursor=pointer]:
+        - /url: /
+      - link "Biblioteca" [ref=e19] [cursor=pointer]:
+        - /url: /biblioteca
+      - link "Salón de la Fama" [ref=e20] [cursor=pointer]:
+        - /url: /salon
+      - link "Acerca de" [ref=e21] [cursor=pointer]:
+        - /url: /about
+      - link "Iniciar Sesión" [ref=e22] [cursor=pointer]:
+        - /url: /login
+      - generic [ref=e24]: CRÉDITOS · 03
+    - main [ref=e25]:
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - heading "ARCADE VAULT" [level=2] [ref=e30]
+          - generic [ref=e31]: ACCESO AL SISTEMA · v2.6
+        - generic [ref=e32]:
+          - button "INICIAR SESIÓN" [ref=e33] [cursor=pointer]
+          - button "CREAR CUENTA" [ref=e34] [cursor=pointer]
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - generic [ref=e37]: Correo electrónico
+            - textbox "Correo electrónico" [ref=e38]:
+              - /placeholder: jugador@vault.gg
+          - generic [ref=e39]:
+            - generic [ref=e40]: Contraseña
+            - textbox "Contraseña" [ref=e41]:
+              - /placeholder: ••••••••
+          - button "ENTRAR AL VAULT" [ref=e42] [cursor=pointer]
+        - button "¿Olvidaste tu contraseña?" [ref=e43] [cursor=pointer]
+        - link "JUGAR COMO INVITADO" [ref=e44] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e45]: O CONTINÚA CON
+        - generic [ref=e46]:
+          - button "◆ GOOGLE" [ref=e47] [cursor=pointer]
+          - button "▣ GITHUB" [ref=e48] [cursor=pointer]
+        - generic [ref=e49]: AL ENTRAR ACEPTAS LOS TÉRMINOS DEL SALÓN ARCADE
+    - contentinfo [ref=e50]: © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=e56] [cursor=pointer]
+  - alert [ref=e60]

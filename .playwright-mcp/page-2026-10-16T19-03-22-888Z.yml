@@ -1,0 +1,68 @@
+- generic [ref=f14e1]:
+  - generic [ref=f14e2]:
+    - navigation [ref=f14e37]:
+      - link "ARCADE VAULT" [ref=f14e38] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f14e41]:
+        - link "Inicio" [ref=f14e42] [cursor=pointer]:
+          - /url: /
+        - link "Biblioteca" [ref=f14e43] [cursor=pointer]:
+          - /url: /biblioteca
+        - link "Salón de la Fama" [ref=f14e44] [cursor=pointer]:
+          - /url: /salon
+        - link "Acerca de" [ref=f14e45] [cursor=pointer]:
+          - /url: /about
+      - generic [ref=f14e46]: CRÉDITOS · 03
+      - link "Iniciar Sesión" [ref=f14e49] [cursor=pointer]:
+        - /url: /login
+    - complementary [ref=f14e50]:
+      - generic [ref=f14e51]: MENÚ
+      - link "Inicio" [ref=f14e52] [cursor=pointer]:
+        - /url: /
+      - link "Biblioteca" [ref=f14e53] [cursor=pointer]:
+        - /url: /biblioteca
+      - link "Salón de la Fama" [ref=f14e54] [cursor=pointer]:
+        - /url: /salon
+      - link "Acerca de" [ref=f14e55] [cursor=pointer]:
+        - /url: /about
+      - link "Iniciar Sesión" [ref=f14e56] [cursor=pointer]:
+        - /url: /login
+      - generic [ref=f14e58]: CRÉDITOS · 03
+    - main [ref=f14e25]:
+      - generic [ref=f14e59]:
+        - generic [ref=f14e60]:
+          - generic [ref=f14e61]:
+            - generic [ref=f14e62]:
+              - generic [ref=f14e63]: Jugador
+              - generic [ref=f14e64]: INVITADO
+            - generic [ref=f14e65]:
+              - generic [ref=f14e66]: Puntuación
+              - generic [ref=f14e67]: "0"
+            - generic [ref=f14e68]:
+              - generic [ref=f14e69]: Vidas
+              - generic [ref=f14e70]: ♥ ♥ ♥
+            - generic [ref=f14e71]:
+              - generic [ref=f14e72]: Nivel
+              - generic [ref=f14e73]: "01"
+          - generic [ref=f14e74]:
+            - button "PAUSA" [ref=f14e75] [cursor=pointer]
+            - button "FIN" [active] [ref=f14e76] [cursor=pointer]
+            - link "SALIR" [ref=f14e77] [cursor=pointer]:
+              - /url: /juegos/rocas
+        - generic [ref=f14e81]:
+          - generic [ref=f14e82]: SEÑAL OK
+          - generic [ref=f14e83]: ROCAS · CRT-83 · 60 HZ
+          - generic [ref=f14e84]: CARGA · 1MB
+        - generic [ref=f14e86]:
+          - heading "FIN DEL JUEGO" [level=2] [ref=f14e87]
+          - generic [ref=f14e88]: PUNTUACIÓN FINAL
+          - generic [ref=f14e89]: "0"
+          - link "INICIA SESIÓN PARA GUARDAR TU PUNTUACIÓN" [ref=f14e91] [cursor=pointer]:
+            - /url: /login
+          - generic [ref=f14e92]:
+            - button "JUGAR DE NUEVO" [ref=f14e93] [cursor=pointer]
+            - link "VOLVER AL VAULT" [ref=f14e94] [cursor=pointer]:
+              - /url: /biblioteca
+    - contentinfo [ref=f14e26]: © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=f14e32] [cursor=pointer]
+  - alert [ref=f14e36]
