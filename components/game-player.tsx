@@ -2,8 +2,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GameCanvas } from "@/components/games/game-canvas";
+import { Gamepad } from "@/components/gamepad";
 import { REAL_GAMES } from "@/components/games/registry";
 import { RANKED_GAMES } from "@/lib/games";
+import { GENERIC_PAD } from "@/lib/games/pads";
 import { saveScore } from "@/app/juegos/[id]/jugar/actions";
 import type { SaveScoreResult } from "@/lib/scores";
 import { SKINS, type SkinId } from "@/lib/games/types";
@@ -125,6 +127,7 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
           aria-label="Skin"
           style={{
             display: "flex",
+            flexWrap: "wrap", // sin scroll horizontal a 375 px
             gap: 8,
             alignItems: "center",
             margin: "0 0 12px",
@@ -179,7 +182,6 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
               <div className="player-ship"></div>
             </div>
           )}
-          {real && <div className="keyboard-notice">REQUIERE TECLADO</div>}
           {paused && !over && (
             <div
               className="crt-content"
@@ -210,6 +212,7 @@ export function GamePlayer({ id, title }: { id: string; title: string }) {
           <span>CARGA · 1MB</span>
         </div>
       </div>
+      <Gamepad layout={real ? real.pad : GENERIC_PAD} />
       {over && (
         <div className="modal-bd">
           <div className="modal">
