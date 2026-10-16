@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { updatePassword } from "@/app/login/actions";
-import { PASSWORD_MIN } from "@/lib/auth";
+import { PASSWORD_HINT, passwordError } from "@/lib/auth";
 export function ResetForm() {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
@@ -11,10 +11,8 @@ export function ResetForm() {
     e.preventDefault();
     if (busy) return;
     const pass = String(new FormData(e.currentTarget).get("pass") ?? "");
-    if (pass.length < PASSWORD_MIN)
-      return setError(
-        `La contraseña debe tener al menos ${PASSWORD_MIN} caracteres.`,
-      );
+    const passErr = passwordError(pass);
+    if (passErr) return setError(passErr);
     setBusy(true);
     setError("");
     const res = await updatePassword(pass);
@@ -64,7 +62,7 @@ export function ResetForm() {
             className="mono"
             style={{ fontSize: 11, color: "var(--ink-faint)", marginBottom: 8 }}
           >
-            Mínimo {PASSWORD_MIN} caracteres.
+            {PASSWORD_HINT}
           </div>
           <button
             className="btn lg"
