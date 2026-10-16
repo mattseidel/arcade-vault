@@ -9,7 +9,12 @@ import {
   signInWithOAuth,
   signUp,
 } from "@/app/login/actions";
-import { PASSWORD_MIN, USERNAME_RE, type AuthResult } from "@/lib/auth";
+import {
+  PASSWORD_HINT,
+  USERNAME_RE,
+  passwordError,
+  type AuthResult,
+} from "@/lib/auth";
 type Mode = "in" | "up" | "recover";
 export function AuthForm() {
   const router = useRouter();
@@ -56,10 +61,8 @@ export function AuthForm() {
     if (mode === "up") {
       if (!USERNAME_RE.test(username))
         return setError("Usa 1–10 caracteres: A-Z, 0-9 o _.");
-      if (pass.length < PASSWORD_MIN)
-        return setError(
-          `La contraseña debe tener al menos ${PASSWORD_MIN} caracteres.`,
-        );
+      const passErr = passwordError(pass);
+      if (passErr) return setError(passErr);
     }
     setBusy(true);
     const res =
@@ -171,6 +174,18 @@ export function AuthForm() {
                   }
                   placeholder="••••••••"
                 />
+                {mode === "up" && (
+                  <div
+                    className="mono"
+                    style={{
+                      fontSize: 11,
+                      color: "var(--ink-faint)",
+                      marginTop: 6,
+                    }}
+                  >
+                    {PASSWORD_HINT}
+                  </div>
+                )}
               </div>
             )}
             <button

@@ -1,7 +1,7 @@
 "use server";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { PASSWORD_MIN, USERNAME_RE, type AuthResult } from "@/lib/auth";
+import { USERNAME_RE, passwordError, type AuthResult } from "@/lib/auth";
 import { createClient } from "@/utils/supabase/server";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const err = (message: string): AuthResult => ({ status: "error", message });
@@ -55,14 +55,15 @@ export async function signUp(
   const mail = norm(email);
   if (!USERNAME_RE.test(name)) return err("Usa 1–10 caracteres: A-Z, 0-9 o _.");
   if (!EMAIL_RE.test(mail)) return err("Correo no válido.");
-  if (String(password ?? "").length < PASSWORD_MIN)
-    return err(`La contraseña debe tener al menos ${PASSWORD_MIN} caracteres.`);
+  const passErr = passwordError(String(password ?? ""));
+  if (passErr) return err(passErr);
   const taken = await checkUsername(name);
   if (taken.status !== "ok") return taken;
   const supabase = await client();
   const { data, error } = await supabase.auth.signUp({ email: mail, password });
   if (error?.code === "email_address_invalid") return err("Correo no válido.");
-  if (error?.code === "weak_password") return err("Contraseña demasiado débil.");
+  if (error?.code === "weak_password")
+    return err("Contraseña demasiado débil.");
   // identities vacío = el correo ya existía (Supabase no lo delata con error)
   if (error || !data.user || data.user.identities?.length === 0)
     return err("No se pudo crear la cuenta. Revisa los datos o inicia sesión.");
@@ -114,8 +115,8 @@ export async function requestReset(email: string): Promise<AuthResult> {
   return { status: "ok" };
 }
 export async function updatePassword(password: string): Promise<AuthResult> {
-  if (String(password ?? "").length < PASSWORD_MIN)
-    return err(`La contraseña debe tener al menos ${PASSWORD_MIN} caracteres.`);
+  const passErr = passwordError(String(password ?? ""));
+  if (passErr) return err(passErr);
   const supabase = await client();
   const {
     data: { user },
