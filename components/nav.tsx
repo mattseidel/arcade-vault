@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { signOut } from "@/app/login/actions";
+import type { SessionUser } from "@/lib/auth";
 
-export function Nav() {
+export function Nav({ user = null }: { user?: SessionUser | null }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -35,7 +37,20 @@ export function Nav() {
           <span className="coin"></span>
           <span>CRÉDITOS · 03</span>
         </div>
-        <Link href="/login" className="btn auth-btn">Iniciar Sesión</Link>
+        {user ? (
+          <div className="auth-btn auth-session">
+            {user.username ? (
+              <span className="auth-user">{user.username}</span>
+            ) : (
+              <Link href="/login/username" className="btn">Elegir username</Link>
+            )}
+            <form action={signOut}>
+              <button className="btn ghost" type="submit">Salir</button>
+            </form>
+          </div>
+        ) : (
+          <Link href="/login" className="btn auth-btn">Iniciar Sesión</Link>
+        )}
         <button className="btn ghost hamburger" onClick={() => setOpen(true)} aria-label="Menú">≡</button>
       </nav>
 
@@ -46,7 +61,20 @@ export function Nav() {
         <Link href="/biblioteca" className={biblioteca ? "active" : ""} onClick={close}>Biblioteca</Link>
         <Link href="/salon" className={salon ? "active" : ""} onClick={close}>Salón de la Fama</Link>
         <Link href="/about" className={about ? "active" : ""} onClick={close}>Acerca de</Link>
-        <Link href="/login" className={auth ? "active" : ""} onClick={close}>Iniciar Sesión</Link>
+        {user ? (
+          <>
+            {user.username ? (
+              <span className="auth-user">{user.username}</span>
+            ) : (
+              <Link href="/login/username" onClick={close}>Elegir username</Link>
+            )}
+            <form action={signOut}>
+              <button className="auth-link" type="submit">Salir</button>
+            </form>
+          </>
+        ) : (
+          <Link href="/login" className={auth ? "active" : ""} onClick={close}>Iniciar Sesión</Link>
+        )}
         <div style={{ flex: 1 }}></div>
         <div className="pixel" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: "0.16em" }}>
           CRÉDITOS · 03
