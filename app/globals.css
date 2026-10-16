@@ -1222,24 +1222,254 @@ a {
   color: var(--cyan);
   margin-bottom: 6px;
 }
-.keyboard-notice {
+/* gamepad táctil MK-II: solo en dispositivos con puntero grueso (móvil/tablet) */
+.gamepad {
   display: none;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 4;
-  padding: 8px 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: var(--yellow);
-  font-family: var(--pixel);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-align: center;
 }
 @media (pointer: coarse) {
-  .keyboard-notice {
-    display: block;
+  .gamepad {
+    --dp: clamp(48px, 13.5vw, 56px); /* lado de cada flecha de la cruceta */
+    --ab: clamp(56px, 17vw, 74px); /* diámetro de A/B */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 20px clamp(12px, 4vw, 28px);
+    background: linear-gradient(180deg, #1c1c28 0%, #0c0c14 100%);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow:
+      0 30px 80px -30px rgba(0, 245, 255, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.6);
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+  }
+  /* bisel interior + trama de puntos */
+  .gamepad::before,
+  .gamepad::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+  .gamepad::before {
+    inset: 4px;
+    border: 1px solid rgba(0, 245, 255, 0.14);
+    border-radius: 14px;
+  }
+  .gamepad::after {
+    inset: 0;
+    border-radius: inherit;
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    );
+    background-size: 8px 8px;
+    opacity: 0.6;
+  }
+  .gamepad button {
+    margin: 0;
+    padding: 0;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  /* cruceta */
+  .gp-dpad {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template: repeat(3, var(--dp)) / repeat(3, var(--dp));
+    gap: 3px;
+  }
+  .gp-dp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-dim);
+    background: linear-gradient(180deg, #1a1a25, #0a0a12);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    box-shadow:
+      0 4px 0 #050507,
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+    transition:
+      transform 80ms,
+      box-shadow 140ms,
+      color 140ms,
+      border-color 140ms,
+      background 140ms;
+  }
+  .gp-dp[data-pos="up"] {
+    grid-area: 1 / 2;
+  }
+  .gp-dp[data-pos="left"] {
+    grid-area: 2 / 1;
+  }
+  .gp-dp[data-pos="right"] {
+    grid-area: 2 / 3;
+  }
+  .gp-dp[data-pos="down"] {
+    grid-area: 3 / 2;
+  }
+  /* dirección que el juego no usa: apagada */
+  .gp-dp[data-off] {
+    color: var(--ink-faint);
+    opacity: 0.35;
+    box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+  }
+  .gp-arrow {
+    width: 22px;
+    height: 22px;
+    transition: filter 140ms;
+  }
+  .gp-dp[data-on] {
+    transform: translateY(3px);
+    color: var(--cyan);
+    background: linear-gradient(180deg, #08161e, #030a0e);
+    border-color: var(--cyan);
+    box-shadow:
+      0 1px 0 #050507,
+      inset 0 0 16px rgba(0, 245, 255, 0.45),
+      0 0 16px rgba(0, 245, 255, 0.5);
+  }
+  .gp-dp[data-on] .gp-arrow {
+    filter: drop-shadow(0 0 6px var(--cyan)) drop-shadow(0 0 12px var(--cyan));
+  }
+  .gp-hub {
+    grid-area: 2 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #181822 0%, #08080d 80%);
+    border: 1px solid rgba(0, 245, 255, 0.15);
+    border-radius: 6px;
+    box-shadow:
+      inset 0 0 12px rgba(0, 0, 0, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+  .gp-gem {
+    width: 12px;
+    height: 12px;
+    background: var(--cyan);
+    box-shadow: 0 0 10px var(--cyan);
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    animation: gp-pulse 2s ease-in-out infinite;
+  }
+  @keyframes gp-pulse {
+    50% {
+      opacity: 0.35;
+      transform: scale(0.85);
+    }
+  }
+  /* botones A/B */
+  .gp-actions {
+    position: relative;
+    z-index: 1;
+    margin-left: auto;
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(12px, 4vw, 22px);
+  }
+  .gp-ab-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .gp-ab {
+    position: relative;
+    width: var(--ab);
+    height: var(--ab);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    background:
+      radial-gradient(
+        circle at 32% 26%,
+        rgba(255, 255, 255, 0.25),
+        transparent 50%
+      ),
+      radial-gradient(circle at 50% 55%, var(--ab-mid), var(--ab-deep) 75%);
+    box-shadow:
+      0 6px 0 #050507,
+      0 0 22px var(--ab-glow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 -4px 8px rgba(0, 0, 0, 0.4);
+    transition:
+      transform 80ms,
+      box-shadow 140ms;
+  }
+  .gp-a {
+    color: var(--magenta);
+    --ab-mid: rgba(255, 0, 110, 0.7);
+    --ab-deep: rgba(110, 0, 40, 0.95);
+    --ab-glow: rgba(255, 0, 110, 0.4);
+  }
+  .gp-b {
+    color: var(--cyan);
+    --ab-mid: rgba(0, 200, 230, 0.7);
+    --ab-deep: rgba(0, 50, 70, 0.95);
+    --ab-glow: rgba(0, 245, 255, 0.4);
+  }
+  .gp-ab-letter {
+    position: relative;
+    z-index: 2;
+    font-family: var(--pixel);
+    font-size: 20px;
+    color: #fff;
+    text-shadow:
+      0 0 8px currentColor,
+      0 0 18px currentColor,
+      0 1px 0 rgba(0, 0, 0, 0.6);
+  }
+  .gp-a .gp-ab-letter {
+    text-shadow:
+      0 0 8px var(--magenta),
+      0 0 18px var(--magenta),
+      0 1px 0 rgba(0, 0, 0, 0.6);
+  }
+  .gp-b .gp-ab-letter {
+    text-shadow:
+      0 0 8px var(--cyan),
+      0 0 18px var(--cyan),
+      0 1px 0 rgba(0, 0, 0, 0.6);
+  }
+  .gp-ab-ring {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px dashed currentColor;
+    opacity: 0;
+    transition:
+      opacity 140ms,
+      transform 200ms;
+  }
+  .gp-ab[data-on] {
+    transform: translateY(4px) scale(0.97);
+    box-shadow:
+      0 1px 0 #050507,
+      0 0 36px var(--ab-glow),
+      inset 0 0 18px rgba(0, 0, 0, 0.5);
+  }
+  .gp-ab[data-on] .gp-ab-ring {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  /* rótulo de la acción bajo cada botón */
+  .gp-cap {
+    font-family: var(--pixel);
+    font-size: 7px;
+    letter-spacing: 0.12em;
+    color: var(--ink-dim);
   }
 }
 /* game over modal */
